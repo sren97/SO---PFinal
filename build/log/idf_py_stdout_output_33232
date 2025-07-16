@@ -1,0 +1,42 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /workspaces/project-name/build/bootloader/esp-idf/esptool_py && /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /workspaces/project-name/build/bootloader/bootloader.bin
+Bootloader binary size 0x66a0 bytes. 0x960 bytes (8%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj
+/workspaces/project-name/main/real_time_stats_example_main.c:510:13: warning: 'display_dashboard' defined but not used [-Wunused-function]
+  510 | static void display_dashboard(void) {
+      |             ^~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:401:13: warning: 'sensor_task' defined but not used [-Wunused-function]
+  401 | static void sensor_task(void *param) {
+      |             ^~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:348:13: warning: 'calculation_task' defined but not used [-Wunused-function]
+  348 | static void calculation_task(void *param) {
+      |             ^~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:307:13: warning: 'led_task' defined but not used [-Wunused-function]
+  307 | static void led_task(void *param) {
+      |             ^~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:258:13: warning: 'configure_scheduling_mode' defined but not used [-Wunused-function]
+  258 | static void configure_scheduling_mode(scheduling_mode_t mode) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:193:13: warning: 'init_task_metrics' defined but not used [-Wunused-function]
+  193 | static void init_task_metrics(task_metrics_t* metrics, const char* name) {
+      |             ^~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:147:21: warning: 'metrics_task_handle' defined but not used [-Wunused-variable]
+  147 | static TaskHandle_t metrics_task_handle = NULL;
+      |                     ^~~~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:141:22: warning: 'event_queue' defined but not used [-Wunused-variable]
+  141 | static QueueHandle_t event_queue;
+      |                      ^~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+[7/9] Linking CXX executable project-name.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.9.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /workspaces/project-name/build/project-name.bin
+[9/9] cd /workspaces/project-name/build/esp-idf/esptool_py && /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /workspaces/project-name/build/partition_table/partition-table.bin /workspaces/project-name/build/project-name.bin
+project-name.bin binary size 0x2b430 bytes. Smallest app partition is 0x100000 bytes. 0xd4bd0 bytes (83%) free.

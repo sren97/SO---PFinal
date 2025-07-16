@@ -1,0 +1,113 @@
+Command: /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/tools/idf_monitor.py -p rfc2217://192.168.56.1:4000?ign_set_control -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /workspaces/project-name/build/project-name.elf /workspaces/project-name/build/bootloader/bootloader.elf -m '/opt/esp/python_env/idf6.0_py3.12_env/bin/python' '/opt/esp/idf/tools/idf.py' '--port' 'rfc2217://192.168.56.1:4000?ign_set_control'
+[0;33m--- esp-idf-monitor 1.6.2 on rfc2217://192.168.56.1:4000?ign_set_control 115200[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H[0m
+[0;33m--- 0x40080400: _invalid_pc_placeholder at /opt/esp/idf/components/xtensa/xtensa_vectors.S:2235
+[0m
+[0;33m--- 0x40080638: call_start_cpu0 at /opt/esp/idf/components/bootloader/subproject/main/bootloader_start.c:25
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da1e0: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:189
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da757: floorf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_floor.c:55
+--- 0x400da341: __kernel_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/kf_rem_pio2.c:95
+--- 0x400da1fd: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:190
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da661: __kernel_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/kf_rem_pio2.c:187
+--- 0x400da1fd: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:190
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400d4289: uart_ll_get_txfifo_len at /opt/esp/idf/components/hal/esp32/include/hal/uart_ll.h:445
+---  (inlined by) uart_tx_char at /opt/esp/idf/components/esp_driver_uart/src/uart_vfs.c:190
+--- 0x400d498c: uart_write at /opt/esp/idf/components/esp_driver_uart/src/uart_vfs.c:245
+--- 0x400d591a: esp_vfs_write at /opt/esp/idf/components/vfs/vfs.c:982
+--- 0x4000bd83: _write_r in ROM
+--- 0x4000182a: write in ROM
+--- 0x400d5341: console_write at /opt/esp/idf/components/esp_vfs_console/vfs_console.c:83
+--- 0x400d591a: esp_vfs_write at /opt/esp/idf/components/vfs/vfs.c:982
+--- 0x4000bd83: _write_r in ROM
+--- 0x4000117d: __swrite in ROM
+--- 0x400592fe: __sflush_r in ROM
+--- 0x4005937a: _fflush_r in ROM
+--- 0x400dabdd: __sfvwrite_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/fvwrite.c:276
+--- 0x400dad15: _puts_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/puts.c:93
+--- 0x400dad46: puts at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/puts.c:130
+--- 0x400d67af: display_dashboard at /workspaces/project-name/main/real_time_stats_example_main.c:559
+--- 0x400d6be6: metrics_task at /workspaces/project-name/main/real_time_stats_example_main.c:588
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da5e0: __kernel_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/kf_rem_pio2.c:171
+--- 0x400da1fd: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:190
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da44e: __kernel_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/kf_rem_pio2.c:127
+--- 0x400da1fd: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:190
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x40063589: __muldf3_aux in ROM
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400d4271: uart_tx_char at /opt/esp/idf/components/esp_driver_uart/src/uart_vfs.c:188
+--- 0x400d498c: uart_write at /opt/esp/idf/components/esp_driver_uart/src/uart_vfs.c:245
+--- 0x400d591a: esp_vfs_write at /opt/esp/idf/components/vfs/vfs.c:982
+--- 0x4000bd83: _write_r in ROM
+--- 0x4000182a: write in ROM
+--- 0x400d5341: console_write at /opt/esp/idf/components/esp_vfs_console/vfs_console.c:83
+--- 0x400d591a: esp_vfs_write at /opt/esp/idf/components/vfs/vfs.c:982
+--- 0x4000bd83: _write_r in ROM
+--- 0x4000117d: __swrite in ROM
+--- 0x400592fe: __sflush_r in ROM
+--- 0x4005937a: _fflush_r in ROM
+--- 0x400dabdd: __sfvwrite_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/fvwrite.c:276
+--- 0x400de3bf: __sprint_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/sprint_r.c:24
+--- 0x400de2b2: _vfprintf_r at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:1531
+--- 0x400dac33: printf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/printf.c:56
+--- 0x400d64c1: print_task_metrics at /workspaces/project-name/main/real_time_stats_example_main.c:490
+--- 0x400d6746: display_dashboard at /workspaces/project-name/main/real_time_stats_example_main.c:539
+--- 0x400d6be6: metrics_task at /workspaces/project-name/main/real_time_stats_example_main.c:588
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0;33m--- 0x400d8eaa: task_wdt_timeout_handling at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:436
+--- 0x400d927c: task_wdt_isr at /opt/esp/idf/components/esp_system/task_wdt/task_wdt.c:509
+--- 0x40082955: _xt_lowint1 at /opt/esp/idf/components/xtensa/xtensa_vectors.S:1240
+--- 0x400da5c5: __kernel_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/kf_rem_pio2.c:169
+--- 0x400da1fd: __ieee754_rem_pio2f at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/ef_rem_pio2.c:190
+--- 0x400d9d1e: cosf at /builds/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libm/math/sf_cos.c:40
+--- 0x400d69d8: calculation_task at /workspaces/project-name/main/real_time_stats_example_main.c:371
+--- 0x40085d51: vPortTaskWrapper at /opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:139
+[0m
+[0m

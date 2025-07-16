@@ -1,0 +1,148 @@
+Command: ninja all
+[0/1] Re-running CMake...
+-- Component directory /workspaces/project-name/components/components does not contain a CMakeLists.txt file. No component will be added
+-- Minimal build - OFF
+-- ccache will be used for faster recompilation
+-- git rev-parse returned 'fatal: not a git repository (or any parent up to mount point /workspaces)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).'
+-- Could not use 'git describe' to determine PROJECT_VER.
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file /workspaces/project-name/sdkconfig
+Loading defaults file /workspaces/project-name/sdkconfig.defaults...
+warning: unknown kconfig symbol 'FREERTOS_USE_TASK_SWITCH_HOOKS' assigned to 'y' in /workspaces/project-name/sdkconfig.defaults
+-- Compiler supported targets: xtensa-esp-elf
+-- USING O3
+-- App "project-name" version: 1
+-- Adding linker script /workspaces/project-name/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /workspaces/project-name/build/esp-idf/esp_system/ld/sections.ld.in
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.newlib-data.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.syscalls.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.newlib-reent-funcs.ld
+-- Adding linker script /opt/esp/idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Components: app_trace app_update bootloader bootloader_support bt cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_bootloader_format esp_coex esp_common esp_driver_ana_cmpr esp_driver_bitscrambler esp_driver_cam esp_driver_dac esp_driver_gpio esp_driver_gptimer esp_driver_i2c esp_driver_i2s esp_driver_isp esp_driver_jpeg esp_driver_ledc esp_driver_mcpwm esp_driver_parlio esp_driver_pcnt esp_driver_ppa esp_driver_rmt esp_driver_sd_intf esp_driver_sdio esp_driver_sdm esp_driver_sdmmc esp_driver_sdspi esp_driver_spi esp_driver_touch_sens esp_driver_tsens esp_driver_twai esp_driver_uart esp_driver_usb_serial_jtag esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_security esp_system esp_timer esp_vfs_console esp_wifi espcoredump esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash nvs_sec_provider openthread partition_table perfmon protobuf-c protocomm pthread rt sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant xtensa
+-- Component paths: /opt/esp/idf/components/app_trace /opt/esp/idf/components/app_update /opt/esp/idf/components/bootloader /opt/esp/idf/components/bootloader_support /opt/esp/idf/components/bt /opt/esp/idf/components/cmock /opt/esp/idf/components/console /opt/esp/idf/components/cxx /opt/esp/idf/components/driver /opt/esp/idf/components/efuse /opt/esp/idf/components/esp-tls /opt/esp/idf/components/esp_adc /opt/esp/idf/components/esp_app_format /opt/esp/idf/components/esp_bootloader_format /opt/esp/idf/components/esp_coex /opt/esp/idf/components/esp_common /opt/esp/idf/components/esp_driver_ana_cmpr /opt/esp/idf/components/esp_driver_bitscrambler /opt/esp/idf/components/esp_driver_cam /opt/esp/idf/components/esp_driver_dac /opt/esp/idf/components/esp_driver_gpio /opt/esp/idf/components/esp_driver_gptimer /opt/esp/idf/components/esp_driver_i2c /opt/esp/idf/components/esp_driver_i2s /opt/esp/idf/components/esp_driver_isp /opt/esp/idf/components/esp_driver_jpeg /opt/esp/idf/components/esp_driver_ledc /opt/esp/idf/components/esp_driver_mcpwm /opt/esp/idf/components/esp_driver_parlio /opt/esp/idf/components/esp_driver_pcnt /opt/esp/idf/components/esp_driver_ppa /opt/esp/idf/components/esp_driver_rmt /opt/esp/idf/components/esp_driver_sd_intf /opt/esp/idf/components/esp_driver_sdio /opt/esp/idf/components/esp_driver_sdm /opt/esp/idf/components/esp_driver_sdmmc /opt/esp/idf/components/esp_driver_sdspi /opt/esp/idf/components/esp_driver_spi /opt/esp/idf/components/esp_driver_touch_sens /opt/esp/idf/components/esp_driver_tsens /opt/esp/idf/components/esp_driver_twai /opt/esp/idf/components/esp_driver_uart /opt/esp/idf/components/esp_driver_usb_serial_jtag /opt/esp/idf/components/esp_eth /opt/esp/idf/components/esp_event /opt/esp/idf/components/esp_gdbstub /opt/esp/idf/components/esp_hid /opt/esp/idf/components/esp_http_client /opt/esp/idf/components/esp_http_server /opt/esp/idf/components/esp_https_ota /opt/esp/idf/components/esp_https_server /opt/esp/idf/components/esp_hw_support /opt/esp/idf/components/esp_lcd /opt/esp/idf/components/esp_local_ctrl /opt/esp/idf/components/esp_mm /opt/esp/idf/components/esp_netif /opt/esp/idf/components/esp_netif_stack /opt/esp/idf/components/esp_partition /opt/esp/idf/components/esp_phy /opt/esp/idf/components/esp_pm /opt/esp/idf/components/esp_psram /opt/esp/idf/components/esp_ringbuf /opt/esp/idf/components/esp_rom /opt/esp/idf/components/esp_security /opt/esp/idf/components/esp_system /opt/esp/idf/components/esp_timer /opt/esp/idf/components/esp_vfs_console /opt/esp/idf/components/esp_wifi /opt/esp/idf/components/espcoredump /opt/esp/idf/components/esptool_py /opt/esp/idf/components/fatfs /opt/esp/idf/components/freertos /opt/esp/idf/components/hal /opt/esp/idf/components/heap /opt/esp/idf/components/http_parser /opt/esp/idf/components/idf_test /opt/esp/idf/components/ieee802154 /opt/esp/idf/components/json /opt/esp/idf/components/log /opt/esp/idf/components/lwip /workspaces/project-name/main /opt/esp/idf/components/mbedtls /opt/esp/idf/components/mqtt /opt/esp/idf/components/newlib /opt/esp/idf/components/nvs_flash /opt/esp/idf/components/nvs_sec_provider /opt/esp/idf/components/openthread /opt/esp/idf/components/partition_table /opt/esp/idf/components/perfmon /opt/esp/idf/components/protobuf-c /opt/esp/idf/components/protocomm /opt/esp/idf/components/pthread /opt/esp/idf/components/rt /opt/esp/idf/components/sdmmc /opt/esp/idf/components/soc /opt/esp/idf/components/spi_flash /opt/esp/idf/components/spiffs /opt/esp/idf/components/tcp_transport /opt/esp/idf/components/ulp /opt/esp/idf/components/unity /opt/esp/idf/components/usb /opt/esp/idf/components/vfs /opt/esp/idf/components/wear_levelling /opt/esp/idf/components/wifi_provisioning /opt/esp/idf/components/wpa_supplicant /opt/esp/idf/components/xtensa
+-- Configuring done (11.7s)
+-- Generating done (25.1s)
+-- Build files have been written to: /workspaces/project-name/build
+[1/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/sensor.c.obj
+[2/10] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj 
+ccache /opt/esp/tools/xtensa-esp-elf/esp-15.1.0_20250607/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc -DESP_PLATFORM -DIDF_VER=\"v6.0-dev-1002-gbfe5caf58f\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/workspaces/project-name/build/config -I/workspaces/project-name/main -I/opt/esp/idf/components/newlib/platform_include -I/opt/esp/idf/components/freertos/config/include -I/opt/esp/idf/components/freertos/config/include/freertos -I/opt/esp/idf/components/freertos/config/xtensa/include -I/opt/esp/idf/components/freertos/FreeRTOS-Kernel/include -I/opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include -I/opt/esp/idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos -I/opt/esp/idf/components/freertos/esp_additions/include -I/opt/esp/idf/components/esp_hw_support/include -I/opt/esp/idf/components/esp_hw_support/include/soc -I/opt/esp/idf/components/esp_hw_support/include/soc/esp32 -I/opt/esp/idf/components/esp_hw_support/dma/include -I/opt/esp/idf/components/esp_hw_support/ldo/include -I/opt/esp/idf/components/esp_hw_support/debug_probe/include -I/opt/esp/idf/components/esp_hw_support/mspi_timing_tuning/include -I/opt/esp/idf/components/esp_hw_support/mspi_timing_tuning/tuning_scheme_impl/include -I/opt/esp/idf/components/esp_hw_support/power_supply/include -I/opt/esp/idf/components/esp_hw_support/port/esp32/. -I/opt/esp/idf/components/esp_hw_support/port/esp32/include -I/opt/esp/idf/components/heap/include -I/opt/esp/idf/components/heap/tlsf -I/opt/esp/idf/components/log/include -I/opt/esp/idf/components/soc/include -I/opt/esp/idf/components/soc/esp32 -I/opt/esp/idf/components/soc/esp32/include -I/opt/esp/idf/components/soc/esp32/register -I/opt/esp/idf/components/hal/platform_port/include -I/opt/esp/idf/components/hal/esp32/include -I/opt/esp/idf/components/hal/include -I/opt/esp/idf/components/esp_rom/include -I/opt/esp/idf/components/esp_rom/esp32/include -I/opt/esp/idf/components/esp_rom/esp32/include/esp32 -I/opt/esp/idf/components/esp_rom/esp32 -I/opt/esp/idf/components/esp_common/include -I/opt/esp/idf/components/esp_system/include -I/opt/esp/idf/components/esp_system/port/soc -I/opt/esp/idf/components/esp_system/port/include/private -I/opt/esp/idf/components/xtensa/esp32/include -I/opt/esp/idf/components/xtensa/include -I/opt/esp/idf/components/xtensa/deprecated_include -I/opt/esp/idf/components/esp_timer/include -I/opt/esp/idf/components/lwip/include -I/opt/esp/idf/components/lwip/include/apps -I/opt/esp/idf/components/lwip/include/apps/sntp -I/opt/esp/idf/components/lwip/lwip/src/include -I/opt/esp/idf/components/lwip/port/include -I/opt/esp/idf/components/lwip/port/freertos/include -I/opt/esp/idf/components/lwip/port/esp32xx/include -I/opt/esp/idf/components/lwip/port/esp32xx/include/arch -I/opt/esp/idf/components/lwip/port/esp32xx/include/sys -I/opt/esp/idf/components/driver/deprecated -I/opt/esp/idf/components/driver/i2c/include -I/opt/esp/idf/components/driver/touch_sensor/include -I/opt/esp/idf/components/driver/twai/include -I/opt/esp/idf/components/driver/touch_sensor/esp32/include -I/opt/esp/idf/components/esp_pm/include -I/opt/esp/idf/components/esp_ringbuf/include -I/opt/esp/idf/components/esp_driver_gpio/include -I/opt/esp/idf/components/esp_driver_pcnt/include -I/opt/esp/idf/components/esp_driver_gptimer/include -I/opt/esp/idf/components/esp_driver_spi/include -I/opt/esp/idf/components/esp_driver_mcpwm/include -I/opt/esp/idf/components/esp_driver_ana_cmpr/include -I/opt/esp/idf/components/esp_driver_i2s/include -I/opt/esp/idf/components/esp_driver_sdmmc/include -I/opt/esp/idf/components/esp_driver_sdmmc/legacy/include -I/opt/esp/idf/components/esp_driver_sd_intf/include -I/opt/esp/idf/components/sdmmc/include -I/opt/esp/idf/components/esp_driver_sdspi/include -I/opt/esp/idf/components/esp_driver_sdio/include -I/opt/esp/idf/components/esp_driver_dac/include -I/opt/esp/idf/components/esp_driver_rmt/include -I/opt/esp/idf/components/esp_driver_tsens/include -I/opt/esp/idf/components/esp_driver_sdm/include -I/opt/esp/idf/components/esp_driver_i2c/include -I/opt/esp/idf/components/esp_driver_uart/include -I/opt/esp/idf/components/vfs/include -I/opt/esp/idf/components/esp_driver_ledc/include -I/opt/esp/idf/components/esp_driver_parlio/include -I/opt/esp/idf/components/esp_driver_usb_serial_jtag/include -I/opt/esp/idf/components/esp_driver_twai/include -mlongcalls -Wno-frame-address -fno-builtin-memcpy -fno-builtin-memset -fno-builtin-bzero  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -Og -fno-shrink-wrap -fmacro-prefix-map=/workspaces/project-name=. -fmacro-prefix-map=/opt/esp/idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -fzero-init-padding-bits=all -fno-malloc-dce -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj -MF esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj -c /workspaces/project-name/main/real_time_stats_example_main.c
+/workspaces/project-name/main/real_time_stats_example_main.c: In function 'display_dashboard':
+/workspaces/project-name/main/real_time_stats_example_main.c:558:24: error: 'RESPONSE_TIME_THRESHOLD_US' undeclared (first use in this function); did you mean 'RESPONSE_TIME_THRESHOLD'?
+  558 |     if (avg_response < RESPONSE_TIME_THRESHOLD_US) {
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                        RESPONSE_TIME_THRESHOLD
+/workspaces/project-name/main/real_time_stats_example_main.c:558:24: note: each undeclared identifier is reported only once for each function it appears in
+/workspaces/project-name/main/real_time_stats_example_main.c: In function 'print_real_time_stats':
+/workspaces/project-name/main/real_time_stats_example_main.c:584:51: error: 'ARRAY_SIZE_OFFSET' undeclared (first use in this function)
+  584 |     start_array_size = uxTaskGetNumberOfTasks() + ARRAY_SIZE_OFFSET;
+      |                                                   ^~~~~~~~~~~~~~~~~
+In file included from /opt/esp/idf/components/freertos/esp_additions/include/freertos/idf_additions.h:22,
+                 from /opt/esp/idf/components/freertos/FreeRTOS-Kernel/include/freertos/FreeRTOS.h:1533,
+                 from /workspaces/project-name/main/real_time_stats_example_main.c:24:
+/workspaces/project-name/main/real_time_stats_example_main.c: In function 'spin_task':
+/workspaces/project-name/main/real_time_stats_example_main.c:662:20: error: 'sync_spin_task' undeclared (first use in this function); did you mean 'spin_task'?
+  662 |     xSemaphoreTake(sync_spin_task, portMAX_DELAY);
+      |                    ^~~~~~~~~~~~~~
+/opt/esp/idf/components/freertos/FreeRTOS-Kernel/include/freertos/semphr.h:279:76: note: in definition of macro 'xSemaphoreTake'
+  279 | #define xSemaphoreTake( xSemaphore, xBlockTime )    xQueueSemaphoreTake( ( xSemaphore ), ( xBlockTime ) )
+      |                                                                            ^~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:665:29: error: 'SPIN_ITER' undeclared (first use in this function)
+  665 |         for (int i = 0; i < SPIN_ITER; i++) {
+      |                             ^~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c: In function 'stats_task':
+/workspaces/project-name/main/real_time_stats_example_main.c:674:20: error: 'sync_stats_task' undeclared (first use in this function); did you mean 'stats_task'?
+  674 |     xSemaphoreTake(sync_stats_task, portMAX_DELAY);
+      |                    ^~~~~~~~~~~~~~~
+/opt/esp/idf/components/freertos/FreeRTOS-Kernel/include/freertos/semphr.h:279:76: note: in definition of macro 'xSemaphoreTake'
+  279 | #define xSemaphoreTake( xSemaphore, xBlockTime )    xQueueSemaphoreTake( ( xSemaphore ), ( xBlockTime ) )
+      |                                                                            ^~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:677:25: error: 'NUM_OF_SPIN_TASKS' undeclared (first use in this function)
+  677 |     for (int i = 0; i < NUM_OF_SPIN_TASKS; i++) {
+      |                         ^~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:678:24: error: 'sync_spin_task' undeclared (first use in this function); did you mean 'spin_task'?
+  678 |         xSemaphoreGive(sync_spin_task);
+      |                        ^~~~~~~~~~~~~~
+/opt/esp/idf/components/freertos/FreeRTOS-Kernel/include/freertos/semphr.h:428:80: note: in definition of macro 'xSemaphoreGive'
+  428 | #define xSemaphoreGive( xSemaphore )    xQueueGenericSend( ( QueueHandle_t ) ( xSemaphore ), NULL, semGIVE_BLOCK_TIME, queueSEND_TO_BACK )
+      |                                                                                ^~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:683:70: error: 'STATS_TICKS' undeclared (first use in this function)
+  683 |         printf("\n\nGetting real time stats over %"PRIu32" ticks\n", STATS_TICKS);
+      |                                                                      ^~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c: In function 'app_main':
+/workspaces/project-name/main/real_time_stats_example_main.c:699:5: error: 'sync_spin_task' undeclared (first use in this function); did you mean 'spin_task'?
+  699 |     sync_spin_task = xSemaphoreCreateCounting(NUM_OF_SPIN_TASKS, 0);
+      |     ^~~~~~~~~~~~~~
+      |     spin_task
+/workspaces/project-name/main/real_time_stats_example_main.c:699:47: error: 'NUM_OF_SPIN_TASKS' undeclared (first use in this function)
+  699 |     sync_spin_task = xSemaphoreCreateCounting(NUM_OF_SPIN_TASKS, 0);
+      |                                               ^~~~~~~~~~~~~~~~~
+/opt/esp/idf/components/freertos/FreeRTOS-Kernel/include/freertos/semphr.h:948:104: note: in definition of macro 'xSemaphoreCreateCounting'
+  948 |     #define xSemaphoreCreateCounting( uxMaxCount, uxInitialCount )    xQueueCreateCountingSemaphore( ( uxMaxCount ), ( uxInitialCount ) )
+      |                                                                                                        ^~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:700:5: error: 'sync_stats_task' undeclared (first use in this function); did you mean 'stats_task'?
+  700 |     sync_stats_task = xSemaphoreCreateBinary();
+      |     ^~~~~~~~~~~~~~~
+      |     stats_task
+/workspaces/project-name/main/real_time_stats_example_main.c:704:18: error: 'task_names' undeclared (first use in this function); did you mean 'basename'?
+  704 |         snprintf(task_names[i], configMAX_TASK_NAME_LEN, "spin%d", i);
+      |                  ^~~~~~~~~~
+      |                  basename
+/workspaces/project-name/main/real_time_stats_example_main.c:705:71: error: 'SPIN_TASK_PRIO' undeclared (first use in this function)
+  705 |         xTaskCreatePinnedToCore(spin_task, task_names[i], 1024, NULL, SPIN_TASK_PRIO, NULL, tskNO_AFFINITY);
+      |                                                                       ^~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:709:62: error: 'STATS_TASK_PRIO' undeclared (first use in this function)
+  709 |     xTaskCreatePinnedToCore(stats_task, "stats", 4096, NULL, STATS_TASK_PRIO, NULL, tskNO_AFFINITY);
+      |                                                              ^~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c: At top level:
+/workspaces/project-name/main/real_time_stats_example_main.c:505:13: warning: 'display_dashboard' defined but not used [-Wunused-function]
+  505 | static void display_dashboard(void) {
+      |             ^~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:396:13: warning: 'sensor_task' defined but not used [-Wunused-function]
+  396 | static void sensor_task(void *param) {
+      |             ^~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:343:13: warning: 'calculation_task' defined but not used [-Wunused-function]
+  343 | static void calculation_task(void *param) {
+      |             ^~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:302:13: warning: 'led_task' defined but not used [-Wunused-function]
+  302 | static void led_task(void *param) {
+      |             ^~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:253:13: warning: 'configure_scheduling_mode' defined but not used [-Wunused-function]
+  253 | static void configure_scheduling_mode(scheduling_mode_t mode) {
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:188:13: warning: 'init_task_metrics' defined but not used [-Wunused-function]
+  188 | static void init_task_metrics(task_metrics_t* metrics, const char* name) {
+      |             ^~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:147:21: warning: 'metrics_task_handle' defined but not used [-Wunused-variable]
+  147 | static TaskHandle_t metrics_task_handle = NULL;
+      |                     ^~~~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:141:22: warning: 'event_queue' defined but not used [-Wunused-variable]
+  141 | static QueueHandle_t event_queue;
+      |                      ^~~~~~~~~~~
+[3/10] Performing build step for 'bootloader'
+[0/1] Re-running CMake...
+-- Minimal build - OFF
+-- Building ESP-IDF components for target esp32
+-- Project sdkconfig file /workspaces/project-name/sdkconfig
+-- Compiler supported targets: xtensa-esp-elf
+-- Adding linker script /opt/esp/idf/components/soc/esp32/ld/esp32.peripherals.ld
+-- Bootloader project name: "bootloader" version: 1
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.api.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.libgcc.ld
+-- Adding linker script /opt/esp/idf/components/esp_rom/esp32/ld/esp32.rom.libc-funcs.ld
+-- Adding linker script /opt/esp/idf/components/bootloader/subproject/main/ld/esp32/bootloader.ld
+-- Adding linker script /opt/esp/idf/components/bootloader/subproject/main/ld/esp32/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_bootloader_format esp_common esp_hw_support esp_rom esp_security esp_system esptool_py freertos hal log main micro-ecc newlib partition_table soc spi_flash xtensa
+-- Component paths: /opt/esp/idf/components/bootloader /opt/esp/idf/components/bootloader_support /opt/esp/idf/components/efuse /opt/esp/idf/components/esp_app_format /opt/esp/idf/components/esp_bootloader_format /opt/esp/idf/components/esp_common /opt/esp/idf/components/esp_hw_support /opt/esp/idf/components/esp_rom /opt/esp/idf/components/esp_security /opt/esp/idf/components/esp_system /opt/esp/idf/components/esptool_py /opt/esp/idf/components/freertos /opt/esp/idf/components/hal /opt/esp/idf/components/log /opt/esp/idf/components/bootloader/subproject/main /opt/esp/idf/components/bootloader/subproject/components/micro-ecc /opt/esp/idf/components/newlib /opt/esp/idf/components/partition_table /opt/esp/idf/components/soc /opt/esp/idf/components/spi_flash /opt/esp/idf/components/xtensa
+-- Configuring done (10.2s)
+-- Generating done (3.1s)
+-- Build files have been written to: /workspaces/project-name/build/bootloader
+[1/1] cd /workspaces/project-name/build/bootloader/esp-idf/esptool_py && /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /workspaces/project-name/build/bootloader/bootloader.bin
+Bootloader binary size 0x66a0 bytes. 0x960 bytes (8%) free.
+ninja: build stopped: subcommand failed.

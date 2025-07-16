@@ -1,0 +1,31 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /workspaces/project-name/build/bootloader/esp-idf/esptool_py && /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /workspaces/project-name/build/bootloader/bootloader.bin
+Bootloader binary size 0x66a0 bytes. 0x960 bytes (8%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/real_time_stats_example_main.c.obj
+/workspaces/project-name/main/real_time_stats_example_main.c:86:9: warning: 'FFT_SIZE' redefined
+   86 | #define FFT_SIZE                64      // Reduced from 256
+      |         ^~~~~~~~
+In file included from /workspaces/project-name/main/real_time_stats_example_main.c:15:
+/workspaces/project-name/main/config_sched_eval.h:68:9: note: this is the location of the previous definition
+   68 | #define FFT_SIZE                256     // FFT size for calculation task
+      |         ^~~~~~~~
+/workspaces/project-name/main/real_time_stats_example_main.c:87:9: warning: 'CALCULATION_ITERATIONS' redefined
+   87 | #define CALCULATION_ITERATIONS  100     // Reduced from 1000
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+/workspaces/project-name/main/config_sched_eval.h:69:9: note: this is the location of the previous definition
+   69 | #define CALCULATION_ITERATIONS  1000    // Number of calculation iterations
+      |         ^~~~~~~~~~~~~~~~~~~~~~
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+[7/9] Linking CXX executable project-name.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.9.0
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /workspaces/project-name/build/project-name.bin
+[9/9] cd /workspaces/project-name/build/esp-idf/esptool_py && /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /workspaces/project-name/build/partition_table/partition-table.bin /workspaces/project-name/build/project-name.bin
+project-name.bin binary size 0x30330 bytes. Smallest app partition is 0x100000 bytes. 0xcfcd0 bytes (81%) free.
