@@ -1,7 +1,7 @@
 Command: /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/tools/idf_monitor.py -p rfc2217://192.168.56.1:4000?ign_set_control -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /workspaces/project-name/build/project-name.elf /workspaces/project-name/build/bootloader/bootloader.elf -m '/opt/esp/python_env/idf6.0_py3.12_env/bin/python' '/opt/esp/idf/tools/idf.py' '--port' 'rfc2217://192.168.56.1:4000?ign_set_control'
- segment 3: paddr=0001ce20 vaddr=40080000 size=031f8h ( 12792) load
-[0;32mI (120) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=11a48h ( 72264) map[0m
-[0;32mI (148) esp_image: segment 5: paddr=00031a70 vaddr=400831f8 size=09ea0h ( 40608) load[0m
+oad
+[0;32mI (120) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=11a80h ( 72320) map[0m
+[0;32mI (148) esp_image: segment 5: paddr=00031aa8 vaddr=400831f8 size=09ea0h ( 40608) load[0m
 [0;32mI (171) boot: Loaded app from partition at offset 0x10000[0m
 [0;32mI (171) boot: Disabling RNG early entropy source...[0m
 [0;32mI (182) cpu_start: Multicore app[0m
@@ -11,18 +11,18 @@ Command: /opt/esp/python_env/idf6.0_py3.12_env/bin/python /opt/esp/idf/tools/idf
 [0;32mI (190) app_init: Project name:     project-name[0m
 [0;32mI (194) app_init: App version:      1[0m
 [0;32mI (198) app_init: Compile time:     Jul 14 2025 23:19:05[0m
-[0;32mI (203) app_init: ELF file SHA256:  523c29770...[0m
+[0;32mI (203) app_init: ELF file SHA256:  4f6b092e1...[0m
 [0;32mI (207) app_init: ESP-IDF:          v6.0-dev-1002-gbfe5caf58f[0m
 [0;32mI (213) efuse_init: Min chip rev:     v0.0[0m
-[0;32mI (216) efuse_init: Max chip rev:     v3.99 [0m
-[0;32mI (220) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (217) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (221) efuse_init: Chip rev:         v3.1[0m
 [0;32mI (225) heap_init: Initializing. RAM available for dynamic allocation:[0m
 [0;32mI (231) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
 [0;32mI (236) heap_init: At 3FFB84C0 len 00027B40 (158 KiB): DRAM[0m
 [0;32mI (241) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
 [0;32mI (246) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
 [0;32mI (252) heap_init: At 4008D098 len 00012F68 (75 KiB): IRAM[0m
-[0;32mI (258) spi_flash: detected chip: gd[0m
+[0;32mI (259) spi_flash: detected chip: gd[0m
 [0;32mI (260) spi_flash: flash io: dio[0m
 [0;33mW (263) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
 [0;32mI (276) main_task: Started on CPU0[0m
@@ -41,7 +41,7 @@ load:0x40078000,len:15928
 load:0x40080400,len:3880
 entry 0x40080638
 [0;32mI (27) boot: ESP-IDF v6.0-dev-1002-gbfe5caf58f 2nd stage bootloader[0m
-[0;32mI (28) boot: compile time Jul 14 2025 23:19:40[0m
+[0;32mI (27) boot: compile time Jul 14 2025 23:19:40[0m
 [0;32mI (28) boot: Multicore bootloader[0m
 [0;32mI (30) boot: chip revision: v3.1[0m
 [0;32mI (33) boot.esp32: SPI Speed      : 40MHz[0m
@@ -58,8 +58,8 @@ entry 0x40080638
 [0;32mI (103) esp_image: segment 1: paddr=0001a7bc vaddr=3ff80000 size=00024h (    36) load[0m
 [0;32mI (103) esp_image: segment 2: paddr=0001a7e8 vaddr=3ffb0000 size=02630h (  9776) load[0m
 [0;32mI (111) esp_image: segment 3: paddr=0001ce20 vaddr=40080000 size=031f8h ( 12792) load[0m
-[0;32mI (120) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=11a48h ( 72264) map[0m
-[0;32mI (148) esp_image: segment 5: paddr=00031a70 vaddr=400831f8 size=09ea0h ( 40608) load[0m
+[0;32mI (120) esp_image: segment 4: paddr=00020020 vaddr=400d0020 size=11a80h ( 72320) map[0m
+[0;32mI (148) esp_image: segment 5: paddr=00031aa8 vaddr=400831f8 size=09ea0h ( 40608) load[0m
 [0;32mI (171) boot: Loaded app from partition at offset 0x10000[0m
 [0;32mI (171) boot: Disabling RNG early entropy source...[0m
 [0;32mI (182) cpu_start: Multicore app[0m
@@ -69,18 +69,18 @@ entry 0x40080638
 [0;32mI (190) app_init: Project name:     project-name[0m
 [0;32mI (194) app_init: App version:      1[0m
 [0;32mI (198) app_init: Compile time:     Jul 14 2025 23:19:05[0m
-[0;32mI (203) app_init: ELF file SHA256:  523c29770...[0m
+[0;32mI (203) app_init: ELF file SHA256:  4f6b092e1...[0m
 [0;32mI (207) app_init: ESP-IDF:          v6.0-dev-1002-gbfe5caf58f[0m
 [0;32mI (213) efuse_init: Min chip rev:     v0.0[0m
-[0;32mI (216) efuse_init: Max chip rev:     v3.99 [0m
-[0;32mI (220) efuse_init: Chip rev:         v3.1[0m
+[0;32mI (217) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (221) efuse_init: Chip rev:         v3.1[0m
 [0;32mI (225) heap_init: Initializing. RAM available for dynamic allocation:[0m
 [0;32mI (231) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
 [0;32mI (236) heap_init: At 3FFB84C0 len 00027B40 (158 KiB): DRAM[0m
 [0;32mI (241) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
 [0;32mI (246) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
 [0;32mI (252) heap_init: At 4008D098 len 00012F68 (75 KiB): IRAM[0m
-[0;32mI (258) spi_flash: detected chip: gd[0m
+[0;32mI (259) spi_flash: detected chip: gd[0m
 [0;32mI (260) spi_flash: flash io: dio[0m
 [0;33mW (263) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
 [0;32mI (276) main_task: Started on CPU0[0m
@@ -88,53 +88,23 @@ entry 0x40080638
 [0;32mI (286) SCHED_EVAL: Starting ESP32 FreeRTOS Scheduling Evaluation System[0m
 [0;32mI (286) SCHED_EVAL: LED Task started[0m
 [0;32mI (286) SCHED_EVAL: Calculation Task started[0m
-[1;31mE (5286) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (5286) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (5286) task_wdt: Tasks currently running:[0m
-[1;31mE (5286) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (5286) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (5286) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA1E0:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
-[1;31mE (10286) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (10286) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (10286) task_wdt: Tasks currently running:[0m
-[1;31mE (10286) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (10286) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (10286) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA757:0x3FFBBAD0 0x400DA341:0x3FFBBB00 0x400DA1FD:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
-[1;31mE (15286) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (15286) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (15286) task_wdt: Tasks currently running:[0m
-[1;31mE (15286) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (15286) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (15286) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA661:0x3FFBBB00 0x400DA1FD:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
-[0;32mI (19696) SCHED_EVAL: Sensor Task started[0m
-[0;32mI (19696) SENSOR: Sensor system initialized[0m
-[0;32mI (19696) SCHED_EVAL: Metrics Task started[0m
+[0;32mI (1746) SCHED_EVAL: Sensor Task started[0m
+[0;32mI (1746) SENSOR: Sensor system initialized[0m
+[0;32mI (1746) SCHED_EVAL: Metrics Task started[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
 [0m  Scheduling Mode: Round-Robin
-  System Uptime: 19 seconds
-  Total Context Switches: 0
+  System Uptime: 1 seconds
+  Total Context Switches: 150
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
+| LED          |        0 |        5 |       22 |      118 |       21 |       53 |      738 |       15 |
+| CPU_CALC     |        1 |        1 |  1457619 |  1457619 |  1457618 |        0 |        0 |        1 |
 | SENSOR       | No samples recorded
 
 [35mPerformance Analysis:
@@ -142,643 +112,1059 @@ Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x4
   [32m✓[0m  Response times within acceptable limits
   Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
-[0;32mI (19786) SCHED_EVAL: Scheduling mode: ROUND_ROBIN[0m
-[0;32mI (19796) SCHED_EVAL: All tasks created successfully[0m
-[0;32mI (19796) SCHED_EVAL: System initialization complete[0m
+[0;32mI (1846) SCHED_EVAL: Scheduling mode: ROUND_ROBIN[0m
+[0;32mI (1846) SCHED_EVAL: All tasks created successfully[0m
+[0;32mI (1856) SCHED_EVAL: System initialization complete[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
 [0m  Scheduling Mode: Round-Robin
+  System Uptime: 2 seconds
+  Total Context Switches: 108
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |       19 |      118 |       18 |      147 |      739 |       26 |
+| CPU_CALC     |        1 |        1 |  1457619 |  1457619 |  1457618 |        0 |        0 |        1 |
+| SENSOR       |        0 |        1 |       43 |      107 |       43 |     2500 |     9999 |        5 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 3 seconds
+  Total Context Switches: 216
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |       18 |      118 |       17 |      167 |      739 |       36 |
+| CPU_CALC     |        0 |        1 |  1502356 |  1547093 |  1502355 |        0 |        0 |        2 |
+| SENSOR       |        0 |        1 |       35 |      107 |       35 |     3333 |    10000 |       10 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 4 seconds
+  Total Context Switches: 324
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      207 |     8943 |      206 |      222 |      739 |       47 |
+| CPU_CALC     |        0 |        1 |  1502356 |  1547093 |  1502355 |        0 |        0 |        2 |
+| SENSOR       |        0 |        1 |       33 |      107 |       32 |     5623 |    39361 |       15 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 5 seconds
+  Total Context Switches: 432
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      170 |     8943 |      170 |      243 |      739 |       58 |
+| CPU_CALC     |        0 |        1 |  1517216 |  1547093 |  1517216 |        0 |        0 |        3 |
+| SENSOR       |        0 |        1 |       31 |      107 |       31 |     9406 |    89360 |       20 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 6 seconds
+  Total Context Switches: 540
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      146 |     8943 |      145 |      247 |      739 |       69 |
+| CPU_CALC     |        0 |        1 |  1517216 |  1547093 |  1517216 |        0 |        0 |        3 |
+| SENSOR       |        0 |        1 |       30 |      107 |       30 |    11143 |    89360 |       25 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 7 seconds
+  Total Context Switches: 648
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      128 |     8943 |      127 |      268 |      739 |       80 |
+| CPU_CALC     |        0 |        1 |  1524654 |  1547093 |  1524653 |        0 |        0 |        4 |
+| SENSOR       |        0 |        1 |       30 |      107 |       29 |    12626 |    89360 |       30 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 9 seconds
+  Total Context Switches: 756
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      115 |     8943 |      114 |      262 |      739 |       90 |
+| CPU_CALC     |        0 |        1 |  1524654 |  1547093 |  1524653 |        0 |        0 |        4 |
+| SENSOR       |        0 |        1 |       30 |      107 |       29 |    13673 |    89360 |       35 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 10 seconds
+  Total Context Switches: 864
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1529123 |  1547093 |  1529122 |        0 |        0 |        5 |
+| SENSOR       |        0 |        1 |       29 |      107 |       29 |    14194 |    89360 |       40 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 11 seconds
+  Total Context Switches: 972
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1529123 |  1547093 |  1529122 |        0 |        0 |        5 |
+| SENSOR       |        0 |        1 |       29 |      107 |       29 |    14627 |    89998 |       45 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+[0;32mI (11566) SCHED_EVAL: Scheduling mode: PRIORITY_BASED[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 12 seconds
+  Total Context Switches: 109
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1532921 |  1551912 |  1532920 |        0 |        0 |        6 |
+| SENSOR       |        0 |        1 |       29 |      107 |       28 |    14940 |    89998 |       50 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 13 seconds
+  Total Context Switches: 217
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1532921 |  1551912 |  1532920 |        0 |        0 |        6 |
+| SENSOR       |        0 |        1 |       29 |      107 |       28 |    15352 |    89998 |       55 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 14 seconds
+  Total Context Switches: 325
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1547463 |  1634715 |  1547462 |        0 |        0 |        7 |
+| SENSOR       |        0 |        1 |       29 |      107 |       28 |    15695 |    89998 |       60 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 15 seconds
+  Total Context Switches: 433
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1547463 |  1634715 |  1547462 |        0 |        0 |        7 |
+| SENSOR       |        0 |        1 |       29 |      107 |       28 |    15984 |    89998 |       65 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 16 seconds
+  Total Context Switches: 541
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1558380 |  1634801 |  1558380 |        0 |        0 |        8 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    16232 |    89998 |       70 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 17 seconds
+  Total Context Switches: 649
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1558380 |  1634801 |  1558380 |        0 |        0 |        8 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    16445 |    89998 |       75 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 18 seconds
+  Total Context Switches: 757
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1566854 |  1634801 |  1566854 |        0 |        0 |        9 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    16632 |    89998 |       80 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 19 seconds
+  Total Context Switches: 865
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1566854 |  1634801 |  1566854 |        0 |        0 |        9 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    16797 |    89998 |       85 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 20 seconds
-  Total Context Switches: 0
+  Total Context Switches: 973
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        1 |        5 |       44 |      111 |       43 |        0 |        1 |        5 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1573638 |  1634801 |  1573638 |        0 |        0 |       10 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    16943 |    89998 |       90 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 21 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       36 |      111 |       35 |        0 |        1 |       10 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 22 seconds
-  Total Context Switches: 0
+  Total Context Switches: 1081
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       33 |      111 |       32 |     4896 |    59273 |       15 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1573638 |  1634801 |  1573638 |        0 |        0 |       10 |
+| SENSOR       |        0 |        1 |       28 |      107 |       28 |    17073 |    89998 |       95 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
+[0;32mI (22376) SCHED_EVAL: Scheduling mode: PREEMPTIVE_COOPERATIVE[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 23 seconds
-  Total Context Switches: 0
+  Total Context Switches: 109
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       32 |      111 |       31 |     8794 |    89274 |       20 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1579704 |  1640359 |  1579703 |        0 |        0 |       11 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17423 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 24 seconds
-  Total Context Switches: 0
+  Total Context Switches: 218
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       31 |      111 |       30 |    11068 |    89274 |       25 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1579704 |  1640359 |  1579703 |        0 |        0 |       11 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptaE (25186) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:
-[1;31mE (25186) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (25186) task_wdt: Tasks currently running:[0m
-[1;31mE (25186) task_wdt: CPU 0: METRICS_Task[0m
-[1;31mE (25186) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (25186) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400D4289:0x3FFBDA00 0x400D498C:0x3FFBDA30 0x400D591A:0x3FFBDA60 0x4000BD83:0x3FFBDA80 0x4000182A:0x3FFBDAA0 0x400D5341:0x3FFBDAC0 0x400D591A:0x3FFBDAE0 0x4000BD83:0x3FFBDB00 0x4000117D:0x3FFBDB20 0x400592FE:0x3FFBDB40 0x4005937A:0x3FFBDB60 0x400DABDD:0x3FFBDB80 0x400DAD15:0x3FFBDBB0 0x400DAD46:0x3FFBDBF0 0x400D67AF:0x3FFBDC10 0x400D6BE6:0x3FFBDC40 0x40085D51:0x3FFBDC60
-
-ble limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 25 seconds
-  Total Context Switches: 0
+  Total Context Switches: 327
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       30 |      111 |       30 |    14856 |   157588 |       30 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1584593 |  1640359 |  1584593 |        0 |        0 |       12 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 26 seconds
+  Total Context Switches: 436
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1584593 |  1640359 |  1584593 |        0 |        0 |       12 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 27 seconds
-  Total Context Switches: 0
+  Total Context Switches: 545
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       30 |      111 |       29 |    15569 |   157588 |       35 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1588738 |  1640359 |  1588738 |        0 |        0 |       13 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 28 seconds
-  Total Context Switches: 0
+  Total Context Switches: 654
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       30 |      111 |       29 |    16100 |   157588 |       40 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1588738 |  1640359 |  1588738 |        0 |        0 |       13 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 29 seconds
-  Total Context Switches: 0
+  Total Context Switches: 763
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       29 |    16510 |   157588 |       45 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592282 |  1640359 |  1592282 |        0 |        0 |       14 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
-[0;32mI (29576) SCHED_EVAL: Scheduling mode: PRIORITY_BASED[0m
-[1;31mE (30186) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (30186) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (30186) task_wdt: Tasks currently running:[0m
-[1;31mE (30186) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (30186) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (30186) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA5E0:0x3FFBBB00 0x400DA1FD:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 30 seconds
-  Total Context Switches: 0
+  Total Context Switches: 872
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       29 |    16828 |   157588 |       50 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592282 |  1640359 |  1592282 |        0 |        0 |       14 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 31 seconds
-  Total Context Switches: 0
+  Total Context Switches: 981
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17059 |   157588 |       55 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1595352 |  1640359 |  1595352 |        0 |        0 |       15 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Preemptive/Cooperative
   System Uptime: 32 seconds
-  Total Context Switches: 0
+  Total Context Switches: 1090
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17252 |   157588 |       60 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1595352 |  1640359 |  1595352 |        0 |        0 |       15 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
+[0;32mI (33286) SCHED_EVAL: Scheduling mode: ROUND_ROBIN[0m
+[0;32mI (33366) SCHED_EVAL: System running - Context switches: 0[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
-  System Uptime: 33 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17414 |   157588 |       65 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Round-Robin
   System Uptime: 34 seconds
-  Total Context Switches: 0
+  Total Context Switches: 109
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17553 |   157588 |       70 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1598328 |  1642970 |  1598328 |        0 |        0 |       16 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
-[1;31mE (35186) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (35186) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (35186) task_wdt: Tasks currently running:[0m
-[1;31mE (35186) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (35186) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (35186) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA44E:0x3FFBBB00 0x400DA1FD:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Round-Robin
   System Uptime: 35 seconds
-  Total Context Switches: 0
+  Total Context Switches: 217
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17673 |   157588 |       75 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1598328 |  1642970 |  1598328 |        0 |        0 |       16 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Round-Robin
   System Uptime: 36 seconds
-  Total Context Switches: 0
+  Total Context Switches: 325
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       29 |      111 |       28 |    17778 |   157588 |       80 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1600575 |  1642970 |  1600575 |        0 |        0 |       17 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Round-Robin
   System Uptime: 37 seconds
-  Total Context Switches: 0
+  Total Context Switches: 433
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       28 |      111 |       28 |    17870 |   157588 |       85 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1600575 |  1642970 |  1600575 |        0 |        0 |       17 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Priority-Based
+[0m  Scheduling Mode: Round-Robin
   System Uptime: 38 seconds
-  Total Context Switches: 0
+  Total Context Switches: 541
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       28 |      111 |       28 |    17952 |   157588 |       90 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1602569 |  1642970 |  1602569 |        0 |        0 |       18 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
 [0m
-[1;31mE (40186) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (40186) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (40186) task_wdt: Tasks currently running:[0m
-[1;31mE (40186) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (40186) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (40186) task_wdt: Print CPU 0 (current core) backtrace[0m
 
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 39 seconds
+  Total Context Switches: 649
 
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x40063589:0x3FFBBD10 0x40085D51:0x3FFBBD70
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1599644 |  1642970 |  1599644 |        0 |        0 |       19 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 40 seconds
+  Total Context Switches: 757
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1599644 |  1642970 |  1599644 |        0 |        0 |       19 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 41 seconds
+  Total Context Switches: 865
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1597013 |  1642970 |  1597012 |        0 |        0 |       20 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 42 seconds
+  Total Context Switches: 973
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1597013 |  1642970 |  1597012 |        0 |        0 |       20 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Round-Robin
+  System Uptime: 43 seconds
+  Total Context Switches: 1081
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1594628 |  1642970 |  1594628 |        0 |        0 |       21 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+[0m
+[0;32mI (44086) SCHED_EVAL: Scheduling mode: PRIORITY_BASED[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
 [0m  Scheduling Mode: Priority-Based
-  System Uptime: 40 seconds
-  Total Context Switches: 0
+  System Uptime: 44 seconds
+  Total Context Switches: 109
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 19404393 | 19404393 | 19404392 |        0 |        0 |        1 |
-| SENSOR       |        0 |        5 |       28 |      111 |       28 |    18025 |   157588 |       95 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1594628 |  1642970 |  1594628 |        0 |        0 |       21 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
   Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
-[0;32mI (40386) SCHED_EVAL: Scheduling mode: PREEMPTIVE_COOPERATIVE[0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 41 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18529 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 42 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 43 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 44 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 45 seconds
-  Total Context Switches: 0
+  Total Context Switches: 217
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592427 |  1642970 |  1592427 |        0 |        0 |       22 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 46 seconds
-  Total Context Switches: 0
+  Total Context Switches: 325
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |     E (46846) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:
-[1;31mE (46846) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (46846) task_wdt: Tasks currently running:[0m
-[1;31mE (46846) task_wdt: CPU 0: METRICS_Task[0m
-[1;31mE (46846) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (46846) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400D4271:0x3FFBD660 0x400D498C:0x3FFBD690 0x400D591A:0x3FFBD6C0 0x4000BD83:0x3FFBD6E0 0x4000182A:0x3FFBD700 0x400D5341:0x3FFBD720 0x400D591A:0x3FFBD740 0x4000BD83:0x3FFBD760 0x4000117D:0x3FFBD780 0x400592FE:0x3FFBD7A0 0x4005937A:0x3FFBD7C0 0x400DABDD:0x3FFBD7E0 0x400DE3BF:0x3FFBD810 0x400DE2B2:0x3FFBD830 0x400DAC33:0x3FFBDB50 0x400D64C1:0x3FFBDBA0 0x400D6746:0x3FFBDC10 0x400D6BE6:0x3FFBDC40 0x40085D51:0x3FFBDC60
-
-   0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592427 |  1642970 |  1592427 |        0 |        0 |       22 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 47 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 48 seconds
-  Total Context Switches: 0
+  Total Context Switches: 433
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1590412 |  1642970 |  1590412 |        0 |        0 |       23 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Preemptive/Cooperative
+[0m  Scheduling Mode: Priority-Based
   System Uptime: 49 seconds
-  Total Context Switches: 0
+  Total Context Switches: 541
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1590412 |  1642970 |  1590412 |        0 |        0 |       23 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 50 seconds
+  Total Context Switches: 649
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592256 |  1642970 |  1592256 |        0 |        0 |       24 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 51 seconds
+  Total Context Switches: 757
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1592256 |  1642970 |  1592256 |        0 |        0 |       24 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 52 seconds
+  Total Context Switches: 865
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1593956 |  1642970 |  1593955 |        0 |        0 |       25 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 53 seconds
+  Total Context Switches: 973
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1593956 |  1642970 |  1593955 |        0 |        0 |       25 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Priority-Based
+  System Uptime: 54 seconds
+  Total Context Switches: 1081
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1595521 |  1642970 |  1595521 |        0 |        0 |       26 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
+
+[35mPerformance Analysis:
+[0m  [32m✓[0m  Jitter within acceptable limits
+  [32m✓[0m  Response times within acceptable limits
+  Current scheduling efficiency: [32mOPTIMAL for real-time tasks
+[0m
+[0;32mI (54896) SCHED_EVAL: Scheduling mode: PREEMPTIVE_COOPERATIVE[0m
+
+[36m[1m===================================================================
+            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
+===================================================================
+[0m[32mSystem Information:
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 55 seconds
+  Total Context Switches: 109
+
+[33mTask Performance Metrics (all times in microseconds):
+[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
+|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1595521 |  1642970 |  1595521 |        0 |        0 |       26 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
@@ -791,134 +1177,102 @@ Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x4
 ===================================================================
 [0m[32mSystem Information:
 [0m  Scheduling Mode: Preemptive/Cooperative
-  System Uptime: 50 seconds
-  Total Context Switches: 0
+  System Uptime: 56 seconds
+  Total Context Switches: 218
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1597251 |  1642970 |  1597251 |        0 |        0 |       27 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
   Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
-[0;32mI (51276) SCHED_EVAL: Scheduling mode: ROUND_ROBIN[0m
-[1;31mE (51846) task_wdt: Task watchdog got triggered. The following tasks/users did not reset the watchdog in time:[0m
-[1;31mE (51846) task_wdt:  - IDLE0 (CPU 0)[0m
-[1;31mE (51846) task_wdt: Tasks currently running:[0m
-[1;31mE (51846) task_wdt: CPU 0: CALC_Task[0m
-[1;31mE (51846) task_wdt: CPU 1: IDLE1[0m
-[1;31mE (51846) task_wdt: Print CPU 0 (current core) backtrace[0m
-
-
-Backtrace: 0x400D8EAA:0x3FFB10A0 0x400D927C:0x3FFB10C0 0x40082955:0x3FFB10F0 0x400DA5C5:0x3FFBBB00 0x400DA1FD:0x3FFBBC90 0x400D9D1E:0x3FFBBCD0 0x400D69D8:0x3FFBBD10 0x40085D51:0x3FFBBD70
-
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 52 seconds
-  Total Context Switches: 0
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 57 seconds
+  Total Context Switches: 327
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1597251 |  1642970 |  1597251 |        0 |        0 |       27 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 53 seconds
-  Total Context Switches: 0
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 58 seconds
+  Total Context Switches: 436
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1598720 |  1642970 |  1598719 |        0 |        0 |       28 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 54 seconds
-  Total Context Switches: 0
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 59 seconds
+  Total Context Switches: 545
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1598720 |  1642970 |  1598719 |        0 |        0 |       28 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
 
 [36m[1m===================================================================
             ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
 ===================================================================
 [0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 55 seconds
-  Total Context Switches: 0
+[0m  Scheduling Mode: Preemptive/Cooperative
+  System Uptime: 61 seconds
+  Total Context Switches: 654
 
 [33mTask Performance Metrics (all times in microseconds):
 [0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
 |--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
+| LED          |        0 |        5 |      194 |     8943 |      194 |      263 |      739 |      100 |
+| CPU_CALC     |        0 |        1 |  1600089 |  1642970 |  1600088 |        0 |        0 |       29 |
+| SENSOR       |        0 |        1 |      328 |    10029 |      327 |    17850 |    99999 |      100 |
 
 [35mPerformance Analysis:
 [0m  [32m✓[0m  Jitter within acceptable limits
   [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
-[0m
-
-[36m[1m===================================================================
-            ESP32 FreeRTOS SCHEDULING EVALUATION DASHBOARD
-===================================================================
-[0m[32mSystem Information:
-[0m  Scheduling Mode: Round-Robin
-  System Uptime: 56 seconds
-  Total Context Switches: 0
-
-[33mTask Performance Metrics (all times in microseconds):
-[0m| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |
-|--------------|----------|----------|----------|----------|----------|----------|----------|----------|
-| LED          |        0 |        1 |       14 |       35 |       13 |        0 |        1 |      100 |
-| CPU_CALC     |        1 |        1 | 20287857 | 21171321 | 20287856 |        0 |        0 |        2 |
-| SENSOR       |        0 |        5 |      527 |    10028 |      527 |    18743 |   157588 |      100 |
-
-[35mPerformance Analysis:
-[0m  [32m✓[0m  Jitter within acceptable limits
-  [32m✓[0m  Response times within acceptable limits
-  Current scheduling efficiency: [33mFAIR but may impact real-time performance
+  Current scheduling efficiency: [36mCOOPERATIVE - depends on task behavior
 [0m
