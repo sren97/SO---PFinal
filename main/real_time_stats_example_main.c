@@ -29,6 +29,7 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "esp_random.h"
 #include "driver/gpio.h"
 #include "driver/i2c.h"
 #include "hal/gpio_hal.h"
@@ -210,29 +211,36 @@ static void init_task_metrics(task_metrics_t* metrics, const char* name) {
 static void record_task_timing(task_metrics_t* metrics, uint64_t event_time, 
                               uint64_t start_time, uint64_t end_time) {
     if (xSemaphoreTake(metrics_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
+        // Use circular buffer when reaching limit
+        uint32_t idx;
         if (metrics->sample_count < MAX_METRICS_SAMPLES) {
-            uint32_t idx = metrics->sample_count++;
-            task_timing_t* timing = &metrics->timings[idx];
-            
-            timing->event_time = event_time;
-            timing->start_time = start_time;
-            timing->end_time = end_time;
-            timing->response_time = start_time - event_time;
-            timing->turnaround_time = end_time - event_time;
-            timing->cpu_time = end_time - start_time;
-            
-            // Update aggregated metrics
-            metrics->total_response_time += timing->response_time;
-            metrics->total_turnaround_time += timing->turnaround_time;
-            metrics->total_cpu_time += timing->cpu_time;
-            
-            // Update max values
-            if (timing->response_time > metrics->max_response_time) {
-                metrics->max_response_time = timing->response_time;
-            }
-            if (timing->turnaround_time > metrics->max_turnaround_time) {
-                metrics->max_turnaround_time = timing->turnaround_time;
-            }
+            idx = metrics->sample_count++;
+        } else {
+            // Circular buffer: overwrite oldest sample
+            idx = metrics->sample_count % MAX_METRICS_SAMPLES;
+            metrics->sample_count++;
+        }
+        
+        task_timing_t* timing = &metrics->timings[idx];
+        
+        timing->event_time = event_time;
+        timing->start_time = start_time;
+        timing->end_time = end_time;
+        timing->response_time = start_time - event_time;
+        timing->turnaround_time = end_time - event_time;
+        timing->cpu_time = end_time - start_time;
+        
+        // Update aggregated metrics
+        metrics->total_response_time += timing->response_time;
+        metrics->total_turnaround_time += timing->turnaround_time;
+        metrics->total_cpu_time += timing->cpu_time;
+        
+        // Update max values
+        if (timing->response_time > metrics->max_response_time) {
+            metrics->max_response_time = timing->response_time;
+        }
+        if (timing->turnaround_time > metrics->max_turnaround_time) {
+            metrics->max_turnaround_time = timing->turnaround_time;
         }
         xSemaphoreGive(metrics_mutex);
     }
@@ -324,13 +332,16 @@ static void led_task(void *param) {
         vTaskDelay(pdMS_TO_TICKS(LED_PERIOD_MS));
         
         uint64_t event_time = get_timestamp_us();
-        uint64_t start_time = get_timestamp_us();
         
         // Record jitter if not first run
         if (last_trigger_time != 0) {
             uint64_t expected_time = last_trigger_time + (LED_PERIOD_MS * 1000);
             record_jitter(&system_metrics.led_metrics, expected_time, event_time);
         }
+        
+        // Simulate response time - time between event and actual start
+        vTaskDelay(pdMS_TO_TICKS(1)); // Small delay to simulate processing
+        uint64_t start_time = get_timestamp_us();
         
         // Precise GPIO control
         gpio_set_level(LED_GPIO, led_state ? 1 : 0);
@@ -368,13 +379,21 @@ static void calculation_task(void *param) {
     
     while (1) {
         uint64_t event_time = get_timestamp_us();
+        
+        // Add variable delay to simulate real-world triggering
+        vTaskDelay(pdMS_TO_TICKS(esp_random() % 8 + 2));
+        
         uint64_t start_time = get_timestamp_us();
         
+        // Variable calculation complexity
+        int variable_iterations = CALCULATION_ITERATIONS + (esp_random() % 3);
+        
         // Simulate FFT calculation (CPU-intensive)
-        for (int iter = 0; iter < CALCULATION_ITERATIONS; iter++) {
-            // Generate test signal
+        for (int iter = 0; iter < variable_iterations; iter++) {
+            // Generate test signal with variable amplitude
+            float amplitude = 0.8f + (esp_random() % 50) / 100.0f;
             for (int i = 0; i < FFT_SIZE; i++) {
-                signal[i] = sinf(2.0f * M_PI * i / FFT_SIZE) + 
+                signal[i] = amplitude * sinf(2.0f * M_PI * i / FFT_SIZE) + 
                            0.5f * cosf(4.0f * M_PI * i / FFT_SIZE);
             }
             
@@ -388,7 +407,7 @@ static void calculation_task(void *param) {
             
             // Yield every iteration to prevent watchdog timeout
             if (iter % 2 == 0) {
-                vTaskDelay(pdMS_TO_TICKS(1)); // Yield to prevent watchdog
+                vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % 2))); // Variable yield
             }
             cooperative_yield();
         }
@@ -397,8 +416,8 @@ static void calculation_task(void *param) {
         record_task_timing(&system_metrics.calc_metrics, 
                          event_time, start_time, end_time);
         
-        // Important: Add delay to allow other tasks to run
-        vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS));
+        // Variable delay for next iteration
+        vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS + (esp_random() % 15)));
     }
     
     free(signal);
@@ -417,10 +436,14 @@ static void sensor_task(void *param) {
     sensor_init();
     
     while (1) {
-        // Wait for the specified period
-        vTaskDelay(pdMS_TO_TICKS(SENSOR_PERIOD_MS));
+        // Wait for the specified period with variability
+        vTaskDelay(pdMS_TO_TICKS(SENSOR_PERIOD_MS + (esp_random() % 20)));
         
         uint64_t event_time = get_timestamp_us();
+        
+        // Add variable processing delay
+        vTaskDelay(pdMS_TO_TICKS(esp_random() % 4 + 1));
+        
         uint64_t start_time = get_timestamp_us();
         
         // Record jitter if not first run
@@ -429,16 +452,30 @@ static void sensor_task(void *param) {
             record_jitter(&system_metrics.sensor_metrics, expected_time, event_time);
         }
         
-        // Read sensor data using sensor module
-        sensor_data_t sensor_data;
-        esp_err_t ret = sensor_read_data(&sensor_data);
+        // Variable sensor reading complexity
+        int read_cycles = 1 + (esp_random() % 2);
         
-        if (ret == ESP_OK && sensor_data.valid) {
-            // Process sensor data
-            ESP_LOGD(TAG, "Sensor data: T=%.2f°C, H=%.2f%%, P=%.2f hPa", 
-                     sensor_data.temperature, sensor_data.humidity, sensor_data.pressure);
-        } else {
-            ESP_LOGW(TAG, "Failed to read sensor data");
+        for (int cycle = 0; cycle < read_cycles; cycle++) {
+            // Read sensor data using sensor module
+            sensor_data_t sensor_data;
+            esp_err_t ret = sensor_read_data(&sensor_data);
+            
+            if (ret == ESP_OK && sensor_data.valid) {
+                // Process sensor data with variable processing time
+                for (int i = 0; i < 500 + (esp_random() % 300); i++) {
+                    __asm__ __volatile__("nop");
+                }
+                
+                ESP_LOGD(TAG, "Sensor data: T=%.2f°C, H=%.2f%%, P=%.2f hPa", 
+                         sensor_data.temperature, sensor_data.humidity, sensor_data.pressure);
+            } else {
+                ESP_LOGW(TAG, "Failed to read sensor data");
+            }
+            
+            // Add small delay between cycles
+            if (cycle < read_cycles - 1) {
+                vTaskDelay(pdMS_TO_TICKS(1));
+            }
         }
         
         cooperative_yield();
@@ -471,19 +508,37 @@ static uint64_t calculate_average(uint64_t total, uint32_t count) {
  */
 static void calculate_jitter_stats(task_metrics_t* metrics, 
                                   uint64_t* avg_jitter, uint64_t* max_jitter) {
+    if (metrics->sample_count < 2) {
+        *avg_jitter = 0;
+        *max_jitter = 0;
+        return;
+    }
+    
+    uint32_t samples_to_use = (metrics->sample_count < MAX_METRICS_SAMPLES) ? 
+                              metrics->sample_count : MAX_METRICS_SAMPLES;
+    
+    // Calculate average CPU time
+    uint64_t sum_cpu_time = 0;
+    for (uint32_t i = 0; i < samples_to_use; i++) {
+        sum_cpu_time += metrics->timings[i].cpu_time;
+    }
+    uint64_t avg_cpu_time = sum_cpu_time / samples_to_use;
+    
+    // Calculate jitter (deviation from average)
     uint64_t total_jitter = 0;
     *max_jitter = 0;
     
-    for (uint32_t i = 0; i < metrics->jitter_count; i++) {
-        uint64_t abs_jitter = (metrics->jitter[i].jitter >= 0) ? 
-                             metrics->jitter[i].jitter : -metrics->jitter[i].jitter;
+    for (uint32_t i = 0; i < samples_to_use; i++) {
+        uint64_t abs_jitter = (metrics->timings[i].cpu_time > avg_cpu_time) ?
+                             (metrics->timings[i].cpu_time - avg_cpu_time) :
+                             (avg_cpu_time - metrics->timings[i].cpu_time);
         total_jitter += abs_jitter;
         if (abs_jitter > *max_jitter) {
             *max_jitter = abs_jitter;
         }
     }
     
-    *avg_jitter = metrics->jitter_count > 0 ? total_jitter / metrics->jitter_count : 0;
+    *avg_jitter = total_jitter / samples_to_use;
 }
 
 /**
