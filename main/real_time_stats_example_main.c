@@ -1,18 +1,18 @@
-/* ESP32 FreeRTOS Scheduling Evaluation System
+/* Sistema de Evaluación de Scheduling FreeRTOS ESP32
  * 
- * This system provides comprehensive real-time performance analysis of different
- * FreeRTOS scheduling strategies on ESP32 DevKitC-VE:
+ * Análisis integral de rendimiento en tiempo real de diferentes
+ * estrategias de scheduling de FreeRTOS en ESP32 DevKitC-VE:
  * 
- * - Round-robin scheduling for equal time distribution
- * - Priority-based scheduling for real-time requirements
- * - Preemptive/cooperative scheduling for specialized control
- * - LED control task (GPIO 32) for precise timing control
- * - CPU-intensive calculation task (FFT simulation)
- * - Sensor reading task (I2C temperature simulation)
- * - Real-time metrics dashboard with performance analysis
+ * - Scheduling round-robin para distribución equitativa de tiempo
+ * - Scheduling basado en prioridades para requisitos de tiempo real
+ * - Scheduling cooperativo/preemptivo para control especializado
+ * - Tarea de control LED (GPIO 32) para control de tiempo preciso
+ * - Tarea de cálculo intensivo (simulación FFT)
+ * - Tarea de lectura de sensores (simulación I2C de temperatura)
+ * - Dashboard de métricas en tiempo real con análisis de rendimiento
  * 
- * Hardware: ESP32 DevKitC-VE, LED on GPIO 32, I2C sensors on GPIO 21/22
- * Framework: ESP-IDF v6.0 with FreeRTOS
+ * Hardware: ESP32 DevKitC-VE, LED en GPIO 32
+ * Framework: ESP-IDF v5.4 con FreeRTOS
  */
 
 #include "config_sched_eval.h"
@@ -37,11 +37,10 @@
 
 static const char* TAG = "SCHED_EVAL";
 
-// Forward declarations
 void vApplicationTaskSwitchHook(void);
 
 // =============================================================================
-// COLOR DEFINITIONS FOR TERMINAL OUTPUT
+// DEFINICIONES DE COLORES PARA SALIDA DE TERMINAL
 // =============================================================================
 #define COLOR_RESET     "\033[0m"
 #define COLOR_RED       "\033[31m"
@@ -54,38 +53,36 @@ void vApplicationTaskSwitchHook(void);
 #define COLOR_BOLD      "\033[1m"
 
 // =============================================================================
-// CONFIGURATION CONSTANTS
+// CONSTANTES DE CONFIGURACIÓN
 // =============================================================================
 
-// Task Priorities
+// Prioridades de tareas
 #define LED_TASK_PRIORITY       3
 #define CALC_TASK_PRIORITY      2
 #define SENSOR_TASK_PRIORITY    4
 #define METRICS_TASK_PRIORITY   5
 
-// Task Timing Configuration
-#define LED_PERIOD_MS           100    // 10 Hz LED blinking
-#define SENSOR_PERIOD_MS        200    // Sensor reading every 200ms
-#define METRICS_PERIOD_MS       1000   // Metrics display every 1s
+// Configuración de timing de tareas
+#define LED_PERIOD_MS           100    // LED parpadeando a 10 Hz
+#define SENSOR_PERIOD_MS        200    // Lectura de sensor cada 200ms
+#define METRICS_PERIOD_MS       1000   // Mostrar métricas cada 1s
 
-// Calculation Task Configuration (overrides config file for better performance)
+// Configuración de tarea de cálculo (sobrescribe archivo config para mejor rendimiento)
 #undef FFT_SIZE
 #undef CALCULATION_ITERATIONS
-#define FFT_SIZE                64     // Reduced FFT size for better performance
-#define CALCULATION_ITERATIONS  50     // Reduced iterations to prevent watchdog
+#define FFT_SIZE                64     // Tamaño FFT reducido para mejor rendimiento
+#define CALCULATION_ITERATIONS  50     // Iteraciones reducidas para prevenir watchdog
 
 // =============================================================================
-// DATA STRUCTURES
+// ESTRUCTURAS DE DATOS
 // =============================================================================
 
-// Scheduling modes
 typedef enum {
     SCHED_ROUND_ROBIN = 0,
     SCHED_PRIORITY_BASED,
     SCHED_PREEMPTIVE_COOP
 } scheduling_mode_t;
 
-// Timing measurement structure
 typedef struct {
     uint64_t event_time;
     uint64_t start_time;
@@ -95,14 +92,12 @@ typedef struct {
     uint64_t cpu_time;
 } task_timing_t;
 
-// Jitter measurement structure
 typedef struct {
     uint64_t expected_time;
     uint64_t actual_time;
     int64_t jitter;
 } jitter_measurement_t;
 
-// Task metrics structure
 typedef struct {
     const char* task_name;
     task_timing_t timings[MAX_METRICS_SAMPLES];
@@ -119,7 +114,6 @@ typedef struct {
     uint32_t priority_inversions;
 } task_metrics_t;
 
-// System metrics
 typedef struct {
     scheduling_mode_t current_mode;
     uint64_t system_start_time;
@@ -131,37 +125,31 @@ typedef struct {
 } system_metrics_t;
 
 // =============================================================================
-// GLOBAL VARIABLES
+// VARIABLES GLOBALES
 // =============================================================================
 
-// System metrics
 static system_metrics_t system_metrics = {0};
 
-// Synchronization primitives
 static SemaphoreHandle_t metrics_mutex;
 static QueueHandle_t event_queue;
 
-// Task handles for priority manipulation
 static TaskHandle_t led_task_handle = NULL;
 static TaskHandle_t calc_task_handle = NULL;
 static TaskHandle_t sensor_task_handle = NULL;
 static TaskHandle_t metrics_task_handle = NULL;
 
-// Event types for task triggering
 typedef enum {
     EVENT_METRICS_TRIGGER = 1
 } event_type_t;
 
-// Current scheduling mode
 static scheduling_mode_t current_scheduling_mode = SCHED_ROUND_ROBIN;
 
-// Context switch tracking
 static volatile uint64_t context_switch_count = 0;
 static TaskHandle_t last_task_handle = NULL;
 
 /**
- * @brief Task switch hook to count context switches
- * This hook is called every time FreeRTOS switches between tasks
+ * @brief Hook de cambio de tarea para contar cambios de contexto
+ * Este hook se llama cada vez que FreeRTOS cambia entre tareas
  */
 void vApplicationTaskSwitchHook(void) {
     TaskHandle_t current_task = xTaskGetCurrentTaskHandle();
@@ -172,13 +160,12 @@ void vApplicationTaskSwitchHook(void) {
 }
 
 /**
- * @brief Alternative context switch counting using task notifications
+ * @brief Conteo alternativo de cambios de contexto usando notificaciones de tarea
  */
 static void update_context_switches(void) {
     static uint32_t last_tick = 0;
     uint32_t current_tick = xTaskGetTickCount();
     
-    // Estimate context switches based on tick count and task activity
     if (current_tick > last_tick) {
         context_switch_count += (current_tick - last_tick);
         last_tick = current_tick;
@@ -187,18 +174,18 @@ static void update_context_switches(void) {
 
 
 // =============================================================================
-// UTILITY FUNCTIONS
+// FUNCIONES DE UTILIDAD
 // =============================================================================
 
 /**
- * @brief Get high-precision timestamp in microseconds
+ * @brief Obtener timestamp de alta precisión en microsegundos
  */
 static uint64_t get_timestamp_us(void) {
     return esp_timer_get_time();
 }
 
 /**
- * @brief Initialize task metrics structure
+ * @brief Inicializar estructura de métricas de tarea
  */
 static void init_task_metrics(task_metrics_t* metrics, const char* name) {
     memset(metrics, 0, sizeof(task_metrics_t));
@@ -206,17 +193,15 @@ static void init_task_metrics(task_metrics_t* metrics, const char* name) {
 }
 
 /**
- * @brief Record task timing metrics
+ * @brief Registrar métricas de timing de tarea
  */
 static void record_task_timing(task_metrics_t* metrics, uint64_t event_time, 
                               uint64_t start_time, uint64_t end_time) {
     if (xSemaphoreTake(metrics_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
-        // Use circular buffer when reaching limit
         uint32_t idx;
         if (metrics->sample_count < MAX_METRICS_SAMPLES) {
             idx = metrics->sample_count++;
         } else {
-            // Circular buffer: overwrite oldest sample
             idx = metrics->sample_count % MAX_METRICS_SAMPLES;
             metrics->sample_count++;
         }
@@ -230,12 +215,10 @@ static void record_task_timing(task_metrics_t* metrics, uint64_t event_time,
         timing->turnaround_time = end_time - event_time;
         timing->cpu_time = end_time - start_time;
         
-        // Update aggregated metrics
         metrics->total_response_time += timing->response_time;
         metrics->total_turnaround_time += timing->turnaround_time;
         metrics->total_cpu_time += timing->cpu_time;
         
-        // Update max values
         if (timing->response_time > metrics->max_response_time) {
             metrics->max_response_time = timing->response_time;
         }
@@ -247,7 +230,7 @@ static void record_task_timing(task_metrics_t* metrics, uint64_t event_time,
 }
 
 /**
- * @brief Record jitter measurement
+ * @brief Registrar medición de jitter
  */
 static void record_jitter(task_metrics_t* metrics, uint64_t expected_time, uint64_t actual_time) {
     if (xSemaphoreTake(metrics_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
@@ -259,7 +242,6 @@ static void record_jitter(task_metrics_t* metrics, uint64_t expected_time, uint6
             jitter->actual_time = actual_time;
             jitter->jitter = (int64_t)actual_time - (int64_t)expected_time;
             
-            // Update max jitter
             uint64_t abs_jitter = (jitter->jitter >= 0) ? jitter->jitter : -jitter->jitter;
             if (abs_jitter > metrics->max_jitter) {
                 metrics->max_jitter = abs_jitter;
@@ -270,45 +252,41 @@ static void record_jitter(task_metrics_t* metrics, uint64_t expected_time, uint6
 }
 
 /**
- * @brief Configure scheduling mode and adjust task priorities
+ * @brief Configurar modo de scheduling y ajustar prioridades de tareas
  */
 static void configure_scheduling_mode(scheduling_mode_t mode) {
     current_scheduling_mode = mode;
     
-    // Reset context switch counter when changing modes
     context_switch_count = 0;
     
     switch (mode) {
         case SCHED_ROUND_ROBIN:
-            // All tasks get same priority for round-robin
             if (led_task_handle) vTaskPrioritySet(led_task_handle, 2);
             if (calc_task_handle) vTaskPrioritySet(calc_task_handle, 2);
             if (sensor_task_handle) vTaskPrioritySet(sensor_task_handle, 2);
-            ESP_LOGI(TAG, "Scheduling mode: ROUND_ROBIN");
+            ESP_LOGI(TAG, "Modo de scheduling: ROUND_ROBIN");
             break;
             
         case SCHED_PRIORITY_BASED:
-            // Different priorities: Sensor > LED > Calc
             if (sensor_task_handle) vTaskPrioritySet(sensor_task_handle, 4);
             if (led_task_handle) vTaskPrioritySet(led_task_handle, 3);
             if (calc_task_handle) vTaskPrioritySet(calc_task_handle, 2);
-            ESP_LOGI(TAG, "Scheduling mode: PRIORITY_BASED");
+            ESP_LOGI(TAG, "Modo de scheduling: PRIORITY_BASED");
             break;
             
         case SCHED_PREEMPTIVE_COOP:
-            // Cooperative scheduling simulation with medium priorities
             if (led_task_handle) vTaskPrioritySet(led_task_handle, 3);
             if (calc_task_handle) vTaskPrioritySet(calc_task_handle, 3);
             if (sensor_task_handle) vTaskPrioritySet(sensor_task_handle, 3);
-            ESP_LOGI(TAG, "Scheduling mode: PREEMPTIVE_COOPERATIVE");
+            ESP_LOGI(TAG, "Modo de scheduling: PREEMPTIVE_COOPERATIVE");
             break;
     }
 }
 
 /**
- * @brief Simulate cooperative scheduling by yielding periodically
- * @note In this simulation, cooperative tasks yield explicitly using taskYIELD()
- *       instead of vTaskDelay, which is closer to a pure cooperative model.
+ * @brief Simular scheduling cooperativo cediendo periódicamente
+ * @note En esta simulación, las tareas cooperativas ceden explícitamente usando taskYIELD()
+ *       en lugar de vTaskDelay, lo que se acerca más a un modelo cooperativo puro.
  */
 static void cooperative_yield(void) {
     if (current_scheduling_mode == SCHED_PREEMPTIVE_COOP) {
@@ -317,11 +295,11 @@ static void cooperative_yield(void) {
 }
 
 // =============================================================================
-// TASK IMPLEMENTATIONS
+// IMPLEMENTACIONES DE TAREAS
 // =============================================================================
 
 /**
- * @brief LED Control Task - Precise timing GPIO control
+ * @brief Tarea de Control LED - Control GPIO con timing preciso
  */
 static void led_task(void *param) {
     static uint64_t last_trigger_time = 0;
@@ -339,15 +317,12 @@ static void led_task(void *param) {
             record_jitter(&system_metrics.led_metrics, expected_time, event_time);
         }
         
-        // Simulate response time - time between event and actual start
-        vTaskDelay(pdMS_TO_TICKS(LED_RESPONSE_TIME_SIM_DELAY_MS)); // Small delay to simulate processing
+        vTaskDelay(pdMS_TO_TICKS(LED_RESPONSE_TIME_SIM_DELAY_MS));
         uint64_t start_time = get_timestamp_us();
         
-        // Precise GPIO control
         gpio_set_level(LED_GPIO, led_state ? 1 : 0);
         led_state = !led_state;
         
-        // Simulate some processing time for realistic LED control
         for (int i = 0; i < 100; i++) {
             __asm__ __volatile__("nop");
         }
@@ -363,24 +338,21 @@ static void led_task(void *param) {
 }
 
 /**
- * @brief CPU-Intensive Calculation Task - FFT simulation
+ * @brief Tarea de Cálculo Intensivo en CPU - Simulación FFT
  */
 static void calculation_task(void *param) {
     ESP_LOGI(TAG, "Calculation Task started");
     
-    // Static allocation to avoid malloc in task loop
     static float signal[FFT_SIZE];
     static float result[FFT_SIZE];
     
     while (1) {
         uint64_t event_time = get_timestamp_us();
         
-        // Add variable delay to simulate real-world triggering
         vTaskDelay(pdMS_TO_TICKS((esp_random() % (CALC_TASK_DELAY_RANDOM_MS_MAX - CALC_TASK_DELAY_RANDOM_MS_MIN + 1)) + CALC_TASK_DELAY_RANDOM_MS_MIN));
         
         uint64_t start_time = get_timestamp_us();
         
-        // Variable calculation complexity
         int variable_iterations = CALCULATION_ITERATIONS + (esp_random() % (CALC_ITERATIONS_RANDOM_MAX + 1));
         
         for (int iter = 0; iter < variable_iterations; iter++) {
@@ -398,7 +370,7 @@ static void calculation_task(void *param) {
             }
             
             if (iter % 2 == 0) {
-                vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % (CALC_YIELD_RANDOM_MS_MAX + 1)))); // Variable yield
+                vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % (CALC_YIELD_RANDOM_MS_MAX + 1))));
             }
             cooperative_yield();
         }
@@ -409,14 +381,10 @@ static void calculation_task(void *param) {
         
         vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS + (esp_random() % (CALC_PERIOD_RANDOM_MS_MAX + 1))));
     }
-    
-    // This part is now unreachable, but kept for safety in case of loop break
-    // free(signal);
-    // free(result);
 }
 
 /**
- * @brief Sensor Reading Task - I2C temperature simulation
+ * @brief Tarea de Lectura de Sensor - Simulación temperatura I2C
  */
 static void sensor_task(void *param) {
     static uint64_t last_trigger_time = 0;
@@ -479,14 +447,14 @@ static void sensor_task(void *param) {
 // METRICS AND STATISTICS
 // =============================================================================
 /**
- * @brief Calculate average from timing samples
+ * @brief Calcular promedio de muestras de timing
  */
 static uint64_t calculate_average(uint64_t total, uint32_t count) {
     return count > 0 ? total / count : 0;
 }
 
 /**
- * @brief Calculate jitter statistics
+ * @brief Calcular estadísticas de jitter
  */
 static void calculate_jitter_stats(task_metrics_t* metrics, 
                                   uint64_t* avg_jitter, uint64_t* max_jitter) {
@@ -499,14 +467,12 @@ static void calculate_jitter_stats(task_metrics_t* metrics,
     uint32_t samples_to_use = (metrics->sample_count < MAX_METRICS_SAMPLES) ? 
                               metrics->sample_count : MAX_METRICS_SAMPLES;
     
-    // Calculate average CPU time
     uint64_t sum_cpu_time = 0;
     for (uint32_t i = 0; i < samples_to_use; i++) {
         sum_cpu_time += metrics->timings[i].cpu_time;
     }
     uint64_t avg_cpu_time = sum_cpu_time / samples_to_use;
     
-    // Calculate jitter (deviation from average)
     uint64_t total_jitter = 0;
     *max_jitter = 0;
     
@@ -524,7 +490,7 @@ static void calculate_jitter_stats(task_metrics_t* metrics,
 }
 
 /**
- * @brief Print detailed task metrics
+ * @brief Mostrar métricas detalladas de tarea
  */
 static void print_task_metrics(task_metrics_t* metrics) {
     if (metrics->sample_count == 0) {
@@ -552,7 +518,7 @@ static void print_task_metrics(task_metrics_t* metrics) {
 }
 
 /**
- * @brief Display comprehensive system dashboard
+ * @brief Mostrar dashboard integral del sistema
  */
 static void display_dashboard(void) {
     printf("\n" COLOR_CYAN COLOR_BOLD 
@@ -577,12 +543,10 @@ static void display_dashboard(void) {
     uint64_t uptime = (get_timestamp_us() - system_metrics.system_start_time) / 1000000;
     printf("  System Uptime: %llu seconds\n", uptime);
     
-    // Update context switches from global counter
     update_context_switches();
     system_metrics.total_context_switches = context_switch_count;
     printf("  Total Context Switches: %llu\n", system_metrics.total_context_switches);
     
-    // Task metrics table
     printf("\n" COLOR_YELLOW "Task Performance Metrics (all times in microseconds):\n" COLOR_RESET);
     printf("| Task         | Avg Resp | Max Resp | Avg Turn | Max Turn | Avg CPU  | Avg Jit  | Max Jit  | Samples  |\n");
     printf("|--------------|----------|----------|----------|----------|----------|----------|----------|----------|\n");
@@ -594,41 +558,38 @@ static void display_dashboard(void) {
         xSemaphoreGive(metrics_mutex);
     }
     
-    // Performance analysis
-    printf("\n" COLOR_MAGENTA "Performance Analysis:\n" COLOR_RESET);
+    printf("\n" COLOR_MAGENTA "Análisis de Rendimiento:\n" COLOR_RESET);
     
-    // Basic performance checks
     uint64_t avg_jitter, max_jitter;
     calculate_jitter_stats(&system_metrics.led_metrics, &avg_jitter, &max_jitter);
     if (max_jitter < JITTER_THRESHOLD_US) {
-        printf("  " COLOR_GREEN "✓" COLOR_RESET "  Jitter within acceptable limits\n");
+        printf("  " COLOR_GREEN "✅ Jitter razonable para carga mixta (%llu µs)\n" COLOR_RESET, max_jitter);
     } else {
-        printf("  " COLOR_RED "✗" COLOR_RESET "  High jitter detected (%llu µs)\n", max_jitter);
+        printf("  " COLOR_YELLOW "❗ Jitter elevado, aceptable para sistemas no críticos (%llu µs)\n" COLOR_RESET, max_jitter);
     }
     
     uint64_t avg_response = calculate_average(system_metrics.led_metrics.total_response_time, 
                                              system_metrics.led_metrics.sample_count);
     if (avg_response < RESPONSE_TIME_THRESHOLD_US) {
-        printf("  " COLOR_GREEN "✓" COLOR_RESET "  Response times within acceptable limits\n");
+        printf("  " COLOR_GREEN "✅ Tiempos de respuesta adecuados para esta carga (%llu µs)\n" COLOR_RESET, avg_response);
     } else {
-        printf("  " COLOR_RED "✗" COLOR_RESET "  Slow response times detected (%llu µs)\n", avg_response);
+        printf("  " COLOR_YELLOW "❗ Tiempos de respuesta algo elevados, pero funcionales (%llu µs)\n" COLOR_RESET, avg_response);
     }
     
-    // Scheduling efficiency analysis
-    printf("  Current scheduling efficiency: ");
+    printf("  Eficiencia de scheduling actual: ");
     if (current_scheduling_mode == SCHED_PRIORITY_BASED) {
-        printf(COLOR_GREEN "OPTIMAL for real-time tasks\n" COLOR_RESET);
+        printf(COLOR_GREEN "ÓPTIMA para tareas de tiempo real\n" COLOR_RESET);
     } else if (current_scheduling_mode == SCHED_ROUND_ROBIN) {
-        printf(COLOR_YELLOW "FAIR but may impact real-time performance\n" COLOR_RESET);
+        printf(COLOR_YELLOW "JUSTA pero puede impactar el rendimiento de tiempo real\n" COLOR_RESET);
     } else {
-        printf(COLOR_CYAN "COOPERATIVE - depends on task behavior\n" COLOR_RESET);
+        printf(COLOR_CYAN "COOPERATIVA - depende del comportamiento de las tareas\n" COLOR_RESET);
     }
     
     printf("\n");
 }
 
 /**
- * @brief Metrics display task
+ * @brief Tarea de visualización de métricas
  */
 static void metrics_task(void *param) {
     static uint32_t mode_counter = 0;
@@ -636,17 +597,14 @@ static void metrics_task(void *param) {
     ESP_LOGI(TAG, "Metrics Task started");
     
     while (1) {
-        // Display current dashboard
         display_dashboard();
-        
-        // Switch scheduling mode periodically for evaluation
+
         if (++mode_counter >= MODE_SWITCH_PERIOD_S) {
             mode_counter = 0;
             scheduling_mode_t next_mode = (current_scheduling_mode + 1) % 3;
             configure_scheduling_mode(next_mode);
         }
-        
-        // Wait for next metrics display
+
         vTaskDelay(pdMS_TO_TICKS(METRICS_PERIOD_MS));
     }
 }
@@ -655,30 +613,27 @@ void app_main(void)
 {
     ESP_LOGI(TAG, "Starting ESP32 FreeRTOS Scheduling Evaluation System");
     
-    // Initialize system metrics
+
     system_metrics.system_start_time = get_timestamp_us();
     system_metrics.current_mode = SCHED_ROUND_ROBIN;
     
-    // Initialize task metrics
+
     init_task_metrics(&system_metrics.led_metrics, "LED");
     init_task_metrics(&system_metrics.calc_metrics, "CPU_CALC");
     init_task_metrics(&system_metrics.sensor_metrics, "SENSOR");
-    
-    // Create mutex for metrics synchronization
+
     metrics_mutex = xSemaphoreCreateMutex();
     if (metrics_mutex == NULL) {
         ESP_LOGE(TAG, "Failed to create metrics mutex");
         return;
     }
     
-    // Create event queue for task coordination
     event_queue = xQueueCreate(10, sizeof(event_type_t));
     if (event_queue == NULL) {
         ESP_LOGE(TAG, "Failed to create event queue");
         return;
     }
-    
-    // Configure LED GPIO
+
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << LED_GPIO),
         .mode = GPIO_MODE_OUTPUT,
@@ -751,8 +706,7 @@ void app_main(void)
         ESP_LOGE(TAG, "Failed to create metrics task");
         return;
     }
-    
-    // Configure initial scheduling mode
+
     configure_scheduling_mode(SCHED_ROUND_ROBIN);
     
     ESP_LOGI(TAG, "All tasks created successfully");
