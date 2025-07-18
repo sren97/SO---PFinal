@@ -328,12 +328,10 @@ static void led_task(void *param) {
     ESP_LOGI(TAG, "LED Task started");
     
     while (1) {
-        // Wait for the specified period
         vTaskDelay(pdMS_TO_TICKS(LED_PERIOD_MS));
         
         uint64_t event_time = get_timestamp_us();
         
-        // Record jitter if not first run
         if (last_trigger_time != 0) {
             uint64_t expected_time = last_trigger_time + (LED_PERIOD_MS * 1000);
             record_jitter(&system_metrics.led_metrics, expected_time, event_time);
@@ -368,7 +366,6 @@ static void led_task(void *param) {
 static void calculation_task(void *param) {
     ESP_LOGI(TAG, "Calculation Task started");
     
-    // Allocate memory for FFT simulation
     float *signal = malloc(FFT_SIZE * sizeof(float));
     float *result = malloc(FFT_SIZE * sizeof(float));
     
@@ -388,16 +385,13 @@ static void calculation_task(void *param) {
         // Variable calculation complexity
         int variable_iterations = CALCULATION_ITERATIONS + (esp_random() % 3);
         
-        // Simulate FFT calculation (CPU-intensive)
         for (int iter = 0; iter < variable_iterations; iter++) {
-            // Generate test signal with variable amplitude
             float amplitude = 0.8f + (esp_random() % 50) / 100.0f;
             for (int i = 0; i < FFT_SIZE; i++) {
                 signal[i] = amplitude * sinf(2.0f * M_PI * i / FFT_SIZE) + 
                            0.5f * cosf(4.0f * M_PI * i / FFT_SIZE);
             }
             
-            // Simulate FFT computation (simplified)
             for (int i = 0; i < FFT_SIZE; i++) {
                 result[i] = 0;
                 for (int j = 0; j < FFT_SIZE; j++) {
@@ -405,7 +399,6 @@ static void calculation_task(void *param) {
                 }
             }
             
-            // Yield every iteration to prevent watchdog timeout
             if (iter % 2 == 0) {
                 vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % 2))); // Variable yield
             }
@@ -416,7 +409,6 @@ static void calculation_task(void *param) {
         record_task_timing(&system_metrics.calc_metrics, 
                          event_time, start_time, end_time);
         
-        // Variable delay for next iteration
         vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS + (esp_random() % 15)));
     }
     
@@ -432,36 +424,29 @@ static void sensor_task(void *param) {
     
     ESP_LOGI(TAG, "Sensor Task started");
     
-    // Initialize sensor system
     sensor_init();
     
     while (1) {
-        // Wait for the specified period with variability
         vTaskDelay(pdMS_TO_TICKS(SENSOR_PERIOD_MS + (esp_random() % 20)));
         
         uint64_t event_time = get_timestamp_us();
         
-        // Add variable processing delay
         vTaskDelay(pdMS_TO_TICKS(esp_random() % 4 + 1));
         
         uint64_t start_time = get_timestamp_us();
-        
-        // Record jitter if not first run
+
         if (last_trigger_time != 0) {
             uint64_t expected_time = last_trigger_time + (SENSOR_PERIOD_MS * 1000);
             record_jitter(&system_metrics.sensor_metrics, expected_time, event_time);
         }
         
-        // Variable sensor reading complexity
         int read_cycles = 1 + (esp_random() % 2);
         
         for (int cycle = 0; cycle < read_cycles; cycle++) {
-            // Read sensor data using sensor module
             sensor_data_t sensor_data;
             esp_err_t ret = sensor_read_data(&sensor_data);
             
             if (ret == ESP_OK && sensor_data.valid) {
-                // Process sensor data with variable processing time
                 for (int i = 0; i < 500 + (esp_random() % 300); i++) {
                     __asm__ __volatile__("nop");
                 }
@@ -472,7 +457,6 @@ static void sensor_task(void *param) {
                 ESP_LOGW(TAG, "Failed to read sensor data");
             }
             
-            // Add small delay between cycles
             if (cycle < read_cycles - 1) {
                 vTaskDelay(pdMS_TO_TICKS(1));
             }
@@ -480,7 +464,6 @@ static void sensor_task(void *param) {
         
         cooperative_yield();
         
-        // Simulate some additional processing
         for (int i = 0; i < 50; i++) {
             __asm__ __volatile__("nop");
         }
@@ -711,13 +694,10 @@ void app_main(void)
         return;
     }
     
-    // Set initial LED state
     gpio_set_level(LED_GPIO, 0);
     
-    // Create and start tasks with proper handles
     BaseType_t task_result;
     
-    // Create LED task
     task_result = xTaskCreatePinnedToCore(
         led_task,
         "LED_Task",
@@ -732,7 +712,6 @@ void app_main(void)
         return;
     }
     
-    // Create calculation task
     task_result = xTaskCreatePinnedToCore(
         calculation_task,
         "CALC_Task",
@@ -747,7 +726,6 @@ void app_main(void)
         return;
     }
     
-    // Create sensor task
     task_result = xTaskCreatePinnedToCore(
         sensor_task,
         "SENSOR_Task",
@@ -762,7 +740,6 @@ void app_main(void)
         return;
     }
     
-    // Create metrics task
     task_result = xTaskCreatePinnedToCore(
         metrics_task,
         "METRICS_Task",
@@ -783,12 +760,9 @@ void app_main(void)
     ESP_LOGI(TAG, "All tasks created successfully");
     ESP_LOGI(TAG, "System initialization complete");
     
-    // Allow other core to finish initialization
     vTaskDelay(pdMS_TO_TICKS(100));
     
-    // Keep main task running for monitoring
     while (1) {
-        // Print system status every 30 seconds
         vTaskDelay(pdMS_TO_TICKS(30000));
         ESP_LOGI(TAG, "System running - Context switches: %llu", context_switch_count);
     }
