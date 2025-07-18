@@ -9,8 +9,9 @@
 #define CONFIG_SCHED_EVAL_H
 
 // =============================================================================
-// HARDWARE CONFIGURATION
+// HARDWARE AND CORE CONFIGURATION
 // =============================================================================
+#define APP_CPU_NUM             1      // Pin tasks to CPU 1 for predictability
 
 // LED Configuration
 #define LED_GPIO                32      // GPIO pin for LED
@@ -19,8 +20,8 @@
 // I2C Configuration
 #define I2C_MASTER_SCL_IO       22      // GPIO pin for I2C SCL
 #define I2C_MASTER_SDA_IO       21      // GPIO pin for I2C SDA
-#define I2C_MASTER_NUM          0       // I2C port number
-#define I2C_MASTER_FREQ_HZ      400000  // I2C clock frequency
+#define I2C_MASTER_NUM          I2C_NUM_0 // I2C port number
+#define I2C_MASTER_FREQ_HZ      100000  // I2C clock frequency
 #define I2C_MASTER_TIMEOUT_MS   1000    // I2C operation timeout
 
 // Sensor Configuration
@@ -31,23 +32,38 @@
 // TASK CONFIGURATION
 // =============================================================================
 
-// Task Stack Sizes
-#define LED_TASK_STACK_SIZE     2048    // LED task stack size
-#define CALC_TASK_STACK_SIZE    4096    // Calculation task stack size
-#define SENSOR_TASK_STACK_SIZE  2048    // Sensor task stack size
-#define METRICS_TASK_STACK_SIZE 4096    // Metrics task stack size
-
 // Task Priorities (can be modified by scheduling mode)
 #define LED_TASK_PRIORITY       3       // LED task priority
 #define CALC_TASK_PRIORITY      2       // Calculation task priority
 #define SENSOR_TASK_PRIORITY    4       // Sensor task priority
 #define METRICS_TASK_PRIORITY   5       // Metrics task priority
 
-// Task Timing Configuration
+// Task Stack Sizes
+#define LED_TASK_STACK_SIZE     3072    // LED task stack size
+#define CALC_TASK_STACK_SIZE    4096    // Calculation task stack size
+#define SENSOR_TASK_STACK_SIZE  4096    // Sensor task stack size
+#define METRICS_TASK_STACK_SIZE 4096    // Metrics task stack size
+
+// Task Timing and Period Configuration
 #define LED_PERIOD_MS           100     // LED blink period (ms)
-#define CPU_CALC_PERIOD_MS      500     // CPU calculation task period (ms)
+#define CPU_CALC_PERIOD_MS      150     // CPU calculation task period (ms)
 #define SENSOR_PERIOD_MS        200     // Sensor reading period (ms)
 #define METRICS_PERIOD_MS       1000    // Metrics display period (ms)
+#define MODE_SWITCH_PERIOD_S    10      // Switch scheduling mode every 10 seconds
+
+// Task Behavior Configuration (Randomness for variability)
+#define LED_RESPONSE_TIME_SIM_DELAY_MS  1
+#define CALC_TASK_DELAY_RANDOM_MS_MIN   2
+#define CALC_TASK_DELAY_RANDOM_MS_MAX   8
+#define CALC_ITERATIONS_RANDOM_MAX      3
+#define CALC_AMPLITUDE_RANDOM_MAX       50
+#define CALC_YIELD_RANDOM_MS_MAX        2
+#define CALC_PERIOD_RANDOM_MS_MAX       15
+#define SENSOR_TASK_DELAY_RANDOM_MS_MIN 1
+#define SENSOR_TASK_DELAY_RANDOM_MS_MAX 4
+#define SENSOR_PERIOD_RANDOM_MS_MAX     20
+#define SENSOR_READ_CYCLES_RANDOM_MAX   2
+#define SENSOR_PROCESSING_Nops_RANDOM_MAX 300
 
 // Legacy compatibility
 #define CALC_PERIOD_MS          CPU_CALC_PERIOD_MS
@@ -68,12 +84,12 @@
 // =============================================================================
 
 // FFT Simulation Parameters
-#define FFT_SIZE                256     // FFT size for calculation task
-#define CALCULATION_ITERATIONS  1000    // Number of calculation iterations
+#define FFT_SIZE                64      // FFT size for calculation task
+#define CALCULATION_ITERATIONS  50      // Base iterations for calculation
 #define CALC_COMPLEXITY_FACTOR  1.0     // Multiplier for calculation complexity
 
 // =============================================================================
-// METRICS CONFIGURATION
+// METRICS AND ANALYSIS CONFIGURATION
 // =============================================================================
 
 // Metrics Collection
@@ -150,10 +166,6 @@
 // Stack Monitoring
 #define STACK_MONITORING_ENABLED 1      // Enable stack usage monitoring
 #define STACK_WARNING_THRESHOLD  80     // Stack usage warning threshold (%)
-
-// =============================================================================
-// ADVANCED FEATURES
-// =============================================================================
 
 // Performance Thresholds
 #define RESPONSE_TIME_THRESHOLD_US    1000  // Response time threshold (microseconds)

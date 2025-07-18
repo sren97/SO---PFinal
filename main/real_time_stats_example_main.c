@@ -307,10 +307,12 @@ static void configure_scheduling_mode(scheduling_mode_t mode) {
 
 /**
  * @brief Simulate cooperative scheduling by yielding periodically
+ * @note In this simulation, cooperative tasks yield explicitly using taskYIELD()
+ *       instead of vTaskDelay, which is closer to a pure cooperative model.
  */
 static void cooperative_yield(void) {
     if (current_scheduling_mode == SCHED_PREEMPTIVE_COOP) {
-        vTaskDelay(pdMS_TO_TICKS(1)); // Brief yield
+        taskYIELD();
     }
 }
 
@@ -338,7 +340,7 @@ static void led_task(void *param) {
         }
         
         // Simulate response time - time between event and actual start
-        vTaskDelay(pdMS_TO_TICKS(1)); // Small delay to simulate processing
+        vTaskDelay(pdMS_TO_TICKS(LED_RESPONSE_TIME_SIM_DELAY_MS)); // Small delay to simulate processing
         uint64_t start_time = get_timestamp_us();
         
         // Precise GPIO control
@@ -366,27 +368,23 @@ static void led_task(void *param) {
 static void calculation_task(void *param) {
     ESP_LOGI(TAG, "Calculation Task started");
     
-    float *signal = malloc(FFT_SIZE * sizeof(float));
-    float *result = malloc(FFT_SIZE * sizeof(float));
-    
-    if (!signal || !result) {
-        ESP_LOGE(TAG, "Failed to allocate memory for calculation task");
-        vTaskDelete(NULL);
-    }
+    // Static allocation to avoid malloc in task loop
+    static float signal[FFT_SIZE];
+    static float result[FFT_SIZE];
     
     while (1) {
         uint64_t event_time = get_timestamp_us();
         
         // Add variable delay to simulate real-world triggering
-        vTaskDelay(pdMS_TO_TICKS(esp_random() % 8 + 2));
+        vTaskDelay(pdMS_TO_TICKS((esp_random() % (CALC_TASK_DELAY_RANDOM_MS_MAX - CALC_TASK_DELAY_RANDOM_MS_MIN + 1)) + CALC_TASK_DELAY_RANDOM_MS_MIN));
         
         uint64_t start_time = get_timestamp_us();
         
         // Variable calculation complexity
-        int variable_iterations = CALCULATION_ITERATIONS + (esp_random() % 3);
+        int variable_iterations = CALCULATION_ITERATIONS + (esp_random() % (CALC_ITERATIONS_RANDOM_MAX + 1));
         
         for (int iter = 0; iter < variable_iterations; iter++) {
-            float amplitude = 0.8f + (esp_random() % 50) / 100.0f;
+            float amplitude = 0.8f + (esp_random() % (CALC_AMPLITUDE_RANDOM_MAX + 1)) / 100.0f;
             for (int i = 0; i < FFT_SIZE; i++) {
                 signal[i] = amplitude * sinf(2.0f * M_PI * i / FFT_SIZE) + 
                            0.5f * cosf(4.0f * M_PI * i / FFT_SIZE);
@@ -400,7 +398,7 @@ static void calculation_task(void *param) {
             }
             
             if (iter % 2 == 0) {
-                vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % 2))); // Variable yield
+                vTaskDelay(pdMS_TO_TICKS(1 + (esp_random() % (CALC_YIELD_RANDOM_MS_MAX + 1)))); // Variable yield
             }
             cooperative_yield();
         }
@@ -409,11 +407,12 @@ static void calculation_task(void *param) {
         record_task_timing(&system_metrics.calc_metrics, 
                          event_time, start_time, end_time);
         
-        vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS + (esp_random() % 15)));
+        vTaskDelay(pdMS_TO_TICKS(CPU_CALC_PERIOD_MS + (esp_random() % (CALC_PERIOD_RANDOM_MS_MAX + 1))));
     }
     
-    free(signal);
-    free(result);
+    // This part is now unreachable, but kept for safety in case of loop break
+    // free(signal);
+    // free(result);
 }
 
 /**
@@ -427,11 +426,11 @@ static void sensor_task(void *param) {
     sensor_init();
     
     while (1) {
-        vTaskDelay(pdMS_TO_TICKS(SENSOR_PERIOD_MS + (esp_random() % 20)));
+        vTaskDelay(pdMS_TO_TICKS(SENSOR_PERIOD_MS + (esp_random() % (SENSOR_PERIOD_RANDOM_MS_MAX + 1))));
         
         uint64_t event_time = get_timestamp_us();
         
-        vTaskDelay(pdMS_TO_TICKS(esp_random() % 4 + 1));
+        vTaskDelay(pdMS_TO_TICKS((esp_random() % (SENSOR_TASK_DELAY_RANDOM_MS_MAX - SENSOR_TASK_DELAY_RANDOM_MS_MIN + 1)) + SENSOR_TASK_DELAY_RANDOM_MS_MIN));
         
         uint64_t start_time = get_timestamp_us();
 
@@ -440,14 +439,14 @@ static void sensor_task(void *param) {
             record_jitter(&system_metrics.sensor_metrics, expected_time, event_time);
         }
         
-        int read_cycles = 1 + (esp_random() % 2);
+        int read_cycles = 1 + (esp_random() % (SENSOR_READ_CYCLES_RANDOM_MAX + 1));
         
         for (int cycle = 0; cycle < read_cycles; cycle++) {
             sensor_data_t sensor_data;
             esp_err_t ret = sensor_read_data(&sensor_data);
             
             if (ret == ESP_OK && sensor_data.valid) {
-                for (int i = 0; i < 500 + (esp_random() % 300); i++) {
+                for (int i = 0; i < 500 + (esp_random() % (SENSOR_PROCESSING_Nops_RANDOM_MAX + 1)); i++) {
                     __asm__ __volatile__("nop");
                 }
                 
@@ -633,7 +632,6 @@ static void display_dashboard(void) {
  */
 static void metrics_task(void *param) {
     static uint32_t mode_counter = 0;
-    const uint32_t MODE_SWITCH_PERIOD = 10; // Switch mode every 10 seconds
     
     ESP_LOGI(TAG, "Metrics Task started");
     
@@ -642,7 +640,7 @@ static void metrics_task(void *param) {
         display_dashboard();
         
         // Switch scheduling mode periodically for evaluation
-        if (++mode_counter >= MODE_SWITCH_PERIOD) {
+        if (++mode_counter >= MODE_SWITCH_PERIOD_S) {
             mode_counter = 0;
             scheduling_mode_t next_mode = (current_scheduling_mode + 1) % 3;
             configure_scheduling_mode(next_mode);
@@ -705,7 +703,7 @@ void app_main(void)
         NULL,
         LED_TASK_PRIORITY,
         &led_task_handle,
-        tskNO_AFFINITY
+        APP_CPU_NUM
     );
     if (task_result != pdPASS) {
         ESP_LOGE(TAG, "Failed to create LED task");
@@ -719,7 +717,7 @@ void app_main(void)
         NULL,
         CALC_TASK_PRIORITY,
         &calc_task_handle,
-        tskNO_AFFINITY
+        APP_CPU_NUM
     );
     if (task_result != pdPASS) {
         ESP_LOGE(TAG, "Failed to create calculation task");
@@ -733,7 +731,7 @@ void app_main(void)
         NULL,
         SENSOR_TASK_PRIORITY,
         &sensor_task_handle,
-        tskNO_AFFINITY
+        APP_CPU_NUM
     );
     if (task_result != pdPASS) {
         ESP_LOGE(TAG, "Failed to create sensor task");
@@ -747,7 +745,7 @@ void app_main(void)
         NULL,
         METRICS_TASK_PRIORITY,
         &metrics_task_handle,
-        tskNO_AFFINITY
+        APP_CPU_NUM
     );
     if (task_result != pdPASS) {
         ESP_LOGE(TAG, "Failed to create metrics task");

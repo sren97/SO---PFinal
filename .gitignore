@@ -1,0 +1,26 @@
+# ESP-IDF build artifacts
+build/
+/sdkconfig
+/managed_components/
+
+# IDE and editor configuration
+/.vscode/
+/.idea/
+/.clangd/
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+/venv/
+/.venv/
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
