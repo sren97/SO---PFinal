@@ -1,75 +1,99 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C5 | ESP32-C6 | ESP32-C61 | ESP32-H2 | ESP32-P4 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | --------- | -------- | -------- | -------- | -------- |
+# Sistema de Evaluación de Scheduling en ESP32 con FreeRTOS
 
-# FreeRTOS Real Time Stats Example
+Este proyecto proporciona un entorno para analizar y comparar el rendimiento en tiempo real de diferentes estrategias de scheduling de FreeRTOS en un ESP32.
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+El sistema ejecuta tres tareas simuladas (control de LED, cálculo intensivo y lectura de sensor) y muestra un dashboard en la terminal con métricas de rendimiento como tiempos de respuesta, jitter y cambios de contexto.
 
-FreeRTOS provides the function `vTaskGetRunTimeStats()` to obtain CPU usage statistics of tasks. However, these statistics are with respect to the entire runtime of FreeRTOS (i.e. **run time stats**). Furthermore, statistics of `vTaskGetRunTimeStats()` are only valid whilst the timer for run time statistics has not overflowed.
+## Requisitos del Sistema
 
-This example demonstrates how to get CPU usage statistics of tasks with respect to a specified duration (i.e. **real time stats**) rather than over the entire runtime of FreeRTOS. The `print_real_time_stats()` function of this example demonstrates how this can be achieved.
+### Hardware
+*   Una placa de desarrollo ESP32 (el proyecto está configurado para una **ESP32 DevKitC-VE**).
 
-## How to use example
+*   Un cable USB para conectar la placa al ordenador.
 
-### Hardware Required
+### Software
+*   **Docker Desktop** instalado y en ejecución.
 
-This example should be able to run on any commonly available ESP32 development board.
+*   **Visual Studio Code** con la extensión [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 
-### Configure the project
+*   **Python 3** en la máquina anfitriona (host).
 
-```
-idf.py menuconfig
-```
+## Instalación y Configuración
 
-* Select `Enable FreeRTOS to collect run time stats` under `Component Config > FreeRTOS` (this should be enabled in the example by default)
+Este proyecto está diseñado para ejecutarse dentro de un Dev Container, que ya incluye el toolchain de ESP-IDF y todas las dependencias necesarias. Sin embargo, es necesario instalar herramientas en la máquina anfitriona para comunicar el puerto serie del ESP32 con el contenedor.
 
-* `Choose the clock source for run time stats` configured under `Component Config > FreeRTOS`. The `esp_timer` should be selected be default. This option will affect the time unit resolution in which the statistics are measured with respect to.
+1.  **Instalar herramientas en la máquina anfitriona:**
+    Abre una terminal en tu máquina (no dentro del contenedor) y ejecuta los siguientes comandos para instalar `esptool` y el servidor RFC2217:
 
-### Build and Flash
+    ```bash
+    pip install esptool
+    pip install esp_rfc2217_server
+    ```
 
-Build the project and flash it to the board, then run monitor tool to view serial output:
+2.  **Abrir el proyecto en el Dev Container:**
+    Abre la carpeta del proyecto en VS Code. La extensión Dev Containers te notificará para "Reabrir en Contenedor" ("Reopen in Container"). Haz clic en esa opción. VS Code construirá y abrirá el entorno de desarrollo.
 
-```
-idf.py -p PORT flash monitor
-```
+## Ejecución de la Aplicación
 
-(Replace PORT with the name of the serial port to use.)
+### 1. Conectar el ESP32 al Contenedor
 
-(To exit the serial monitor, type ``Ctrl-]``.)
+Para que el contenedor pueda acceder al ESP32 conectado a tu máquina, necesitas reenviar el puerto serie usando `esp_rfc2217_server`.
 
-See the Getting Started Guide for full steps to configure and use ESP-IDF to build projects.
+1.  **Identifica el puerto serie de tu ESP32:**
+    *   **Windows:** Abre el "Administrador de dispositivos" y busca en "Puertos (COM y LPT)". El nombre será algo como `Silicon Labs CP210x USB to UART Bridge (COM3)`.
 
-## Example Output
+    *   **Linux:** Ejecuta `ls /dev/tty*` en una terminal. El puerto será probablemente `/dev/ttyUSB0`.
 
-The example should have the following log output:
+    *   **macOS:** Ejecuta `ls /dev/tty.*`. El puerto será similar a `/dev/tty.SLAB_USBtoUART`.
 
-```
-...
-Getting real time stats over 100 ticks
-| Task | Run Time | Percentage
-| stats | 1304 | 0%
-| IDLE0 | 206251 | 10%
-| IDLE1 | 464785 | 23%
-| spin2 | 225389 | 11%
-| spin0 | 227174 | 11%
-| spin4 | 225303 | 11%
-| spin1 | 207264 | 10%
-| spin3 | 225331 | 11%
-| spin5 | 225369 | 11%
-| Tmr Svc | 0 | 0%
-| esp_timer | 0 | 0%
-| ipc1 | 0 | 0%
-| ipc0 | 0 | 0%
-Real time stats obtained
-...
-```
 
-## Example Breakdown
+2.  **Inicia el servidor de reenvío de puertos:**
+    En una terminal de tu máquina anfitriona, ejecuta el siguiente comando, reemplazando `<TU_PUERTO_SERIAL>` con el puerto que identificaste en el paso anterior.
 
-### Spin tasks
+    ```bash
+    # Ejemplo para Windows
+    python -m esp_rfc2217_server -p 4000 COM3
 
-During the examples initialization process, multiple `spin` tasks are created. These tasks will simply spin a certain number of CPU cycles to consume CPU time, then block for a predetermined period.
+    # Ejemplo para Linux/macOS
+    python3 -m esp_rfc2217_server -p 4000 /dev/ttyUSB0
+    ```
 
-### Understanding the stats
+3.  **Verifica la conexión:**
 
-From the log output, it can be seen that the spin tasks consume nearly an equal amount of time over the specified stats collection period of `print_real_time_stats()`. The real time stats also display the CPU time consumption of other tasks created by default in ESP-IDF (e.g. `IDLE` and `ipc` tasks).
+    La salida debería ser similar a esta. Toma nota de la dirección IP que se muestra (`192.168.56.1` en este ejemplo), ya que la necesitarás más adelante.
+
+    ```
+    INFO: RFC 2217 TCP/IP to Serial redirector - type Ctrl-C / BREAK to quit
+    INFO: Serving serial port: COM3
+    INFO: TCP/IP port: 4000
+    INFO: Waiting for connection ... use the 'rfc2217://192.168.56.1:4000?ign_set_control' as a PORT
+    ```
+    Cuando el contenedor se conecte, verás un mensaje como: `INFO: Connected by 192.168.56.1:54839`.
+
+### 2. Compilar, Flashear y Monitorear
+
+Abre una terminal dentro del Dev Container en VS Code (`Terminal > New Terminal`) y ejecuta los siguientes comandos.
+
+1.  **Compilar el proyecto:**
+    ```bash
+    idf.py build
+    ```
+
+2.  **Poner el ESP32 en modo "Download":**
+    Para flashear el firmware, la mayoría de las placas ESP32 necesitan entrar en modo de descarga.
+    *   Mantén presionado el botón `BOOT`.
+    *   Presiona y suelta el botón `EN` (a veces etiquetado como `RST`).
+    *   Suelta el botón `BOOT`.
+
+3.  **Flashear el firmware:**
+    Reemplaza la dirección IP si la que te mostró el servidor RFC2217 es diferente.
+    ```bash
+    idf.py -p rfc2217://192.168.56.1:4000?ign_set_control flash
+    ```
+
+4.  **Monitorear la salida:**
+    Una vez flasheado, el programa comenzará a ejecutarse. Para ver el dashboard de métricas, ejecuta:
+    ```bash
+    idf.py -p rfc2217://192.168.56.1:4000?ign_set_control monitor
+    ```
+    Para salir del monitor, presiona `Ctrl+]`.
