@@ -4,6 +4,9 @@ Este proyecto proporciona un entorno para analizar y comparar el rendimiento en 
 
 El sistema ejecuta tres tareas simuladas (control de LED, cálculo intensivo y lectura de sensor) y muestra un dashboard en la terminal con métricas de rendimiento como tiempos de respuesta, jitter y cambios de contexto.
 
+El archivo que contiene el articulo realizado con Overleaf es: IEEE_Conference_Template.zip
+El video donde se muestra la funcionalidad es Finaal.mp3
+
 ## Requisitos del Sistema
 
 ### Hardware
